@@ -1,7 +1,4 @@
-120625 12:24 am PST
-
-Folder PATH listing for volume website
-
+120625 2:45am PST
 K:.
 ª   appsettings.Development.json
 ª   appsettings.json
@@ -47,6 +44,12 @@ K:.
 ª   ª       NavMenu.razor.css
 ª   ª       PageSubNav.razor
 ª   ª       PageSubNav.razor.css
+ª   ª       SubNav_00_Overview.razor
+ª   ª       SubNav_00_Overview.razor.css
+ª   ª       SubNav_00_Overview_Analytics.razor
+ª   ª       SubNav_00_Overview_Analytics.razor.css
+ª   ª       SubNav_00_Overview_Reports.razor
+ª   ª       SubNav_00_Overview_Reports.razor.css
 ª   ª       SubNav_01_Oanda.razor
 ª   ª       SubNav_01_Oanda.razor.css
 ª   ª       SubNav_01_Oanda_Analytics.razor
@@ -82,13 +85,37 @@ K:.
 ª       ª   Error.razor
 ª       ª   
 ª       +---00_Overview
-ª       ª       01_Overview.razor
-ª       ª       01_Overview.razor.css
-ª       ª       Overview-Analytics.razor
-ª       ª       Overview-Analytics.razor.css
-ª       ª       Overview-Report.razor
-ª       ª       Overview-Report.razor.css
-ª       ª       
+ª       ª   ª   01_Overview_Trade01.razor
+ª       ª   ª   01_Overview_Trade01.razor.css
+ª       ª   ª   02_Overview_Trade02.razor
+ª       ª   ª   02_Overview_Trade02.razor.css
+ª       ª   ª   03_Overview_Trade03.razor
+ª       ª   ª   03_Overview_Trade03.razor.css
+ª       ª   ª   
+ª       ª   +---04_Overview_Analytics
+ª       ª   ª       01_Overview_Analytics.razor
+ª       ª   ª       01_Overview_Analytics.razor.css
+ª       ª   ª       02_Overview_Analytics.razor
+ª       ª   ª       02_Overview_Analytics.razor.css
+ª       ª   ª       03_Overview_Analytics.razor
+ª       ª   ª       03_Overview_Analytics.razor.css
+ª       ª   ª       04_Overview_Analytics.razor
+ª       ª   ª       04_Overview_Analytics.razor.css
+ª       ª   ª       05_Overview_Analytics.razor
+ª       ª   ª       05_Overview_Analytics.razor.css
+ª       ª   ª       
+ª       ª   +---05_Overview_Reports
+ª       ª           01_Overview_Reports.razor
+ª       ª           01_Overview_Reports.razor.css
+ª       ª           02_Overview_Reports.razor
+ª       ª           02_Overview_Reports.razor.css
+ª       ª           03_Overview_Reports.razor
+ª       ª           03_Overview_Reports.razor.css
+ª       ª           04_Overview_Reports.razor
+ª       ª           04_Overview_Reports.razor.css
+ª       ª           05_Overview_Reports.razor
+ª       ª           05_Overview_Reports.razor.css
+ª       ª           
 ª       +---01_Oanda
 ª       ª   ª   01_Oanda_RT.razor
 ª       ª   ª   01_Oanda_RT.razor.css
@@ -369,9 +396,22 @@ K:.
 ª           ª   ª   ª       MainLayout.razor.rz.scp.css
 ª           ª   ª   ª       NavMenu.razor.rz.scp.css
 ª           ª   ª   ª       PageSubNav.razor.rz.scp.css
+ª           ª   ª   ª       SubNav_00_Oanda_Reports.razor.rz.scp.css
+ª           ª   ª   ª       SubNav_00_Overview- Copy.razor.rz.scp.css
+ª           ª   ª   ª       SubNav_00_Overview.razor.rz.scp.css
+ª           ª   ª   ª       SubNav_00_Overview_Analytics - Copy.razor.rz.scp.css
+ª           ª   ª   ª       SubNav_00_Overview_Analytics.razor.rz.scp.css
+ª           ª   ª   ª       SubNav_00_Overview_Reports - Copy.razor.rz.scp.css
+ª           ª   ª   ª       SubNav_00_Overview_Reports.razor.rz.scp.css
+ª           ª   ª   ª       SubNav_01_Oanda - Copy.razor.rz.scp.css
 ª           ª   ª   ª       SubNav_01_Oanda.razor.rz.scp.css
+ª           ª   ª   ª       SubNav_01_Oanda_Analytics - Copy.razor.rz.scp.css
 ª           ª   ª   ª       SubNav_01_Oanda_Analytics.razor.rz.scp.css
+ª           ª   ª   ª       SubNav_01_Oanda_Reports - Copy.razor.rz.scp.css
 ª           ª   ª   ª       SubNav_01_Oanda_Reports.razor.rz.scp.css
+ª           ª   ª   ª       SubNav_01_Overview- Copy.razor.rz.scp.css
+ª           ª   ª   ª       SubNav_01_Overview_Analytics - Copy.razor.rz.scp.css
+ª           ª   ª   ª       SubNav_01_Overview_Reports - Copy.razor.rz.scp.css
 ª           ª   ª   ª       SubNav_02_Sierra_PST.razor.rz.scp.css
 ª           ª   ª   ª       SubNav_02_Sierra_PST_Analytics.razor.rz.scp.css
 ª           ª   ª   ª       SubNav_02_Sierra_PST_Reports.razor.rz.scp.css
@@ -387,10 +427,48 @@ K:.
 ª           ª   ª   ª       
 ª           ª   ª   +---Page
 ª           ª   ª       +---00_Overview
-ª           ª   ª       ª       01_Overview.razor.rz.scp.css
-ª           ª   ª       ª       Overview-Analytics.razor.rz.scp.css
-ª           ª   ª       ª       Overview-Report.razor.rz.scp.css
-ª           ª   ª       ª       
+ª           ª   ª       ª   ª   01_Overview_Trade01.razor.rz.scp.css
+ª           ª   ª       ª   ª   02_Overview_Trade02.razor.rz.scp.css
+ª           ª   ª       ª   ª   03_Overview_Trade03.razor.rz.scp.css
+ª           ª   ª       ª   ª   
+ª           ª   ª       ª   +---04_Oanda_Analytics
+ª           ª   ª       ª   ª       01_Oanda_Analytics.razor.rz.scp.css
+ª           ª   ª       ª   ª       02_Oanda_Analytics.razor.rz.scp.css
+ª           ª   ª       ª   ª       03_Oanda_Analytics.razor.rz.scp.css
+ª           ª   ª       ª   ª       04_Oanda_Analytics.razor.rz.scp.css
+ª           ª   ª       ª   ª       05_Oanda_Analytics.razor.rz.scp.css
+ª           ª   ª       ª   ª       
+ª           ª   ª       ª   +---04_Overview_Analytics
+ª           ª   ª       ª   ª       01_Oanda_Analytics.razor.rz.scp.css
+ª           ª   ª       ª   ª       01_Overview_Analytics.razor.rz.scp.css
+ª           ª   ª       ª   ª       02_Oanda_Analytics.razor.rz.scp.css
+ª           ª   ª       ª   ª       02_Overview_Analytics.razor.rz.scp.css
+ª           ª   ª       ª   ª       03_Oanda_Analytics.razor.rz.scp.css
+ª           ª   ª       ª   ª       03_Overview_Analytics.razor.rz.scp.css
+ª           ª   ª       ª   ª       04_Oanda_Analytics.razor.rz.scp.css
+ª           ª   ª       ª   ª       04_Overview_Analytics.razor.rz.scp.css
+ª           ª   ª       ª   ª       05_Oanda_Analytics.razor.rz.scp.css
+ª           ª   ª       ª   ª       05_Overview_Analytics.razor.rz.scp.css
+ª           ª   ª       ª   ª       
+ª           ª   ª       ª   +---05_Oanda_Reports
+ª           ª   ª       ª   ª       01_Oanda_Reports.razor.rz.scp.css
+ª           ª   ª       ª   ª       02_Oanda_Reports.razor.rz.scp.css
+ª           ª   ª       ª   ª       03_Oanda_Reports.razor.rz.scp.css
+ª           ª   ª       ª   ª       04_Oanda_Reports.razor.rz.scp.css
+ª           ª   ª       ª   ª       05_Oanda_Reports.razor.rz.scp.css
+ª           ª   ª       ª   ª       
+ª           ª   ª       ª   +---05_Overview_Reports
+ª           ª   ª       ª           01_Oanda_Reports.razor.rz.scp.css
+ª           ª   ª       ª           01_Overview_Reports.razor.rz.scp.css
+ª           ª   ª       ª           02_Oanda_Reports.razor.rz.scp.css
+ª           ª   ª       ª           02_Overview_Reports.razor.rz.scp.css
+ª           ª   ª       ª           03_Oanda_Reports.razor.rz.scp.css
+ª           ª   ª       ª           03_Overview_Reports.razor.rz.scp.css
+ª           ª   ª       ª           04_Oanda_Reports.razor.rz.scp.css
+ª           ª   ª       ª           04_Overview_Reports.razor.rz.scp.css
+ª           ª   ª       ª           05_Oanda_Reports.razor.rz.scp.css
+ª           ª   ª       ª           05_Overview_Reports.razor.rz.scp.css
+ª           ª   ª       ª           
 ª           ª   ª       +---01_Oanda
 ª           ª   ª       ª   ª   01_Oanda_RT.razor.rz.scp.css
 ª           ª   ª       ª   ª   02_Oanda_RM.razor.rz.scp.css
@@ -718,6 +796,7 @@ K:.
 ª   +---MarketData
 ª   ª       ITickSource_Service.cs
 ª   ª       TickSource_Manager_Service.cs
+ª   ª       TickSource_Oanda_Service.cs
 ª   ª       TickSource_Recorder_Service.cs
 ª   ª       TickSource_Sierra_Rithmic_Service.cs
 ª   ª       TickSource_Test_Service.cs
@@ -747,4 +826,3 @@ K:.
                     bootstrap-icons.woff
                     bootstrap-icons.woff2
                     
-
