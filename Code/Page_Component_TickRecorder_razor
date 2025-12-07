@@ -1,4 +1,4 @@
-@* Updated: 2025-12-06 21:40 PST - Tick recorder panel with shared test-panel styles *@
+@* Updated: 2025-12-07 23:45 PST - Tick recorder panel with explicit column widths *@
 
 @using TradingAppProject.Service.MarketData
 @inject ITickSource_Recorder_Service TickRecorder
@@ -38,6 +38,15 @@ else
 {
     <div class="test-panel-ticks">
         <table class="test-panel-tick-table">
+            <colgroup>
+                <col style="width: 30px;" />   @* # *@
+                <col style="width: 140px;" />  @* Time (Local) *@
+                <col style="width: 100px;" />   @* Symbol *@
+                <col style="width: 70px;" />   @* Bid *@
+                <col style="width: 70px;" />   @* Ask *@
+                <col />                        @* Last (auto) *@
+            </colgroup>
+
             <thead>
                 <tr>
                     <th>#</th>
