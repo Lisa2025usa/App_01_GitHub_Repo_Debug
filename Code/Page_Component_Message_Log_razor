@@ -1,31 +1,39 @@
+@* Updated: 2025-12-06 21:25 PST - Message log panel with header + consistent layout *@
 @using TradingAppProject.Service.All
-@* Updated: 2025-12-01 06:40 PST - Global live view of Service_Message log *@
 @implements IDisposable
 
-<div class="messages-log scrollable">
-    @if (Messages.Count == 0)
-    {
-        <div class="message">No messages yet.</div>
-    }
-    else
-    {
-        @foreach (var line in Messages)
-        {
-            <div class="message">@line</div>
-        }
-    }
+<div class="test-panel-header">
+    <h4>Message Log - System Messages</h4>
+    <p class="test-panel-summary">
+        Showing last @Var_Messages.Count messages.
+    </p>
 </div>
 
-@code
+@if (Var_Messages.Count == 0)
 {
+    <div class="test-panel-empty">
+        No messages yet.
+    </div>
+}
+else
+{
+    <div class="test-panel-message-log">
+        @foreach (var line in Var_Messages)
+        {
+            <div class="message-log-row">@line</div>
+        }
+    </div>
+}
+
+@code {
     [Inject] private Message_Service MessageService { get; set; } = default!;
 
-    private List<string> Messages = [];
+    private List<string> Var_Messages = [];
 
     protected override void OnInitialized()
     {
         // Initial snapshot
-        Messages = [.. MessageService.Messages];
+        Var_Messages = [.. MessageService.Messages];
 
         // Subscribe for live updates
         MessageService.OnMessagesChanged += HandleMessagesChanged;
@@ -33,7 +41,7 @@
 
     private void HandleMessagesChanged()
     {
-        Messages = [.. MessageService.Messages];
+        Var_Messages = [.. MessageService.Messages];
         _ = InvokeAsync(StateHasChanged);
     }
 
