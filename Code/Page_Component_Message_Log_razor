@@ -1,4 +1,5 @@
-@* Updated: 2025-12-06 21:25 PST - Message log panel with header + consistent layout *@
+@* Updated: 2025-12-07 02:10 PST - Message log panel with shared test-panel styles *@
+
 @using TradingAppProject.Service.All
 @implements IDisposable
 
@@ -18,24 +19,22 @@
 else
 {
     <div class="test-panel-message-log">
-        @foreach (var line in Var_Messages)
+        @foreach (string line in Var_Messages)
         {
-            <div class="message-log-row">@line</div>
+            <div class="test-panel-message-log-row">@line</div>
         }
     </div>
 }
 
-@code {
+@code
+{
     [Inject] private Message_Service MessageService { get; set; } = default!;
 
-    private List<string> Var_Messages = [];
+    private List<string> Var_Messages { get; set; } = [];
 
     protected override void OnInitialized()
     {
-        // Initial snapshot
         Var_Messages = [.. MessageService.Messages];
-
-        // Subscribe for live updates
         MessageService.OnMessagesChanged += HandleMessagesChanged;
     }
 
