@@ -1,19 +1,34 @@
-@using TradingAppProject.Service.MarketData
-@* Updated: 2025-12-06 23:30 PST - Live tick monitor with title + optional symbol filter *@
+@* Updated: 2025-12-06 23:55 PST - Tick monitor panel aligned with shared test-panel styles *@
 
+@using TradingAppProject.Service.MarketData
 @inject TickSource_Manager_Service TickSourceManager
 @implements IDisposable
 
-<div class="tick-monitor">
-    <h3>@Par_Title</h3>
+<div class="test-panel-header">
+    <h4>@Par_Title</h4>
+    <p class="test-panel-summary">
+        @if (string.IsNullOrWhiteSpace(Par_SymbolFilter))
+        {
+            @:Showing all symbols from latest snapshot.
+        }
+        else
+        {
+            @:Filtered to symbol: @Par_SymbolFilter.
+        }
+        Currently tracking @_snapshot.Count symbol(s). Displaying @_filteredTicks.Count tick(s).
+    </p>
+</div>
 
-    @if (!_filteredTicks.Any())
-    {
-        <p>No ticks received yet.</p>
-    }
-    else
-    {
-        <table class="grid">
+@if (_filteredTicks.Count == 0)
+{
+    <div class="test-panel-empty">
+        No ticks received yet.
+    </div>
+}
+else
+{
+    <div class="test-panel-ticks tick-monitor">
+        <table class="test-panel-tick-table">
             <thead>
                 <tr>
                     <th>Symbol</th>
@@ -24,7 +39,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var tick in _filteredTicks)
+                @foreach (MarketTick tick in _filteredTicks)
                 {
                     <tr>
                         <td>@tick.Symbol</td>
@@ -36,39 +51,39 @@
                 }
             </tbody>
         </table>
-    }
-</div>
+    </div>
+}
 
-@code {
+@code
+{
     // ----- Parameters -----
 
     /// <summary>
-    /// Title displayed above the tick monitor.
+    /// Title displayed above the tick monitor panel.
     /// </summary>
-    [Parameter]
-    public string Par_Title { get; set; } = "Live Tick Monitor (Test)";
+    [Parameter] public string Par_Title { get; set; } = "Live Tick Monitor";
 
     /// <summary>
     /// Optional symbol filter. If set (e.g. "EUR/USD" or "MESZ5.CME"),
     /// only ticks for that symbol will be shown. If null/empty, all
     /// symbols in the snapshot are displayed.
     /// </summary>
-    [Parameter]
-    public string? Par_SymbolFilter { get; set; }
+    [Parameter] public string? Par_SymbolFilter { get; set; }
 
     // ----- Internal state -----
 
     private IReadOnlyDictionary<string, MarketTick> _snapshot =
         new Dictionary<string, MarketTick>();
 
-    private IEnumerable<MarketTick> _filteredTicks = Enumerable.Empty<MarketTick>();
+    private List<MarketTick> _filteredTicks = [];
 
     protected override void OnInitialized()
     {
+        // Initial snapshot
         _snapshot = TickSourceManager.GetSnapshot();
         RebuildFilteredTicks();
 
-        // OnTickUpdated is Action<MarketTick>
+        // Subscribe for live updates (OnTickUpdated is Action<MarketTick>)
         TickSourceManager.OnTickUpdated += HandleTick;
     }
 
@@ -78,13 +93,14 @@
         _snapshot = TickSourceManager.GetSnapshot();
         RebuildFilteredTicks();
 
-        // Just fire the UI update; we don't need the Task
-        InvokeAsync(StateHasChanged);
+        // Just schedule a UI refresh; we don't need to await it
+        _ = InvokeAsync(StateHasChanged);
     }
 
     private void RebuildFilteredTicks()
     {
-        IEnumerable<KeyValuePair<string, MarketTick>> query = _snapshot.OrderBy(x => x.Key);
+        IEnumerable<KeyValuePair<string, MarketTick>> query =
+            _snapshot.OrderBy(kvp => kvp.Key);
 
         if (!string.IsNullOrWhiteSpace(Par_SymbolFilter))
         {
@@ -92,7 +108,7 @@
                 string.Equals(kvp.Key, Par_SymbolFilter, StringComparison.OrdinalIgnoreCase));
         }
 
-        _filteredTicks = query.Select(kvp => kvp.Value);
+        _filteredTicks = [.. query.Select(kvp => kvp.Value)];
     }
 
     public void Dispose()
