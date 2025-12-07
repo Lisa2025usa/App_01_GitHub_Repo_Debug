@@ -1,4 +1,4 @@
-@* Updated: 2025-12-07 01:45 PST - Tick monitor panel aligned with shared test-panel styles *@
+@* Updated: 2025-12-07 23:55 PST - Tick monitor panel with explicit column widths *@
 
 @using TradingAppProject.Service.MarketData
 @inject TickSource_Manager_Service TickSourceManager
@@ -29,6 +29,14 @@ else
 {
     <div class="test-panel-ticks test-panel-tick-monitor">
         <table class="test-panel-tick-table">
+            <colgroup>
+                <col style="width: 100px;" />  @* Symbol *@
+                <col style="width: 80px;" />   @* Last *@
+                <col style="width: 80px;" />   @* Bid *@
+                <col style="width: 80px;" />   @* Ask *@
+                <col />                        @* Time (Local) - takes remaining space *@
+            </colgroup>
+
             <thead>
                 <tr>
                     <th>Symbol</th>
