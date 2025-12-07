@@ -1,0 +1,238 @@
+/* ---------- Base Typography ---------- */
+html, body
+{
+    font-family: Arial, Calibri, sans-serif;
+    margin: 0px;
+    padding: 0px;
+}
+
+/* ---------- Root Color Variables ---------- */
+html,
+:root
+{
+    /* Base solids */
+    --white: #ffffff;
+    --black: #000000;
+    /* Greyscale */
+    --black-05: #f2f2f2;
+    --black-10: #e6e6e6;
+    --black-20: #cccccc;
+    --black-30: #b3b3b3;
+    --black-40: #999999;
+    --black-50: #808080;
+    --black-60: #666666;
+    --black-70: #4d4d4d;
+    --black-80: #333333;
+    /* Blues */
+    --blue-10: #e1f5fc;
+    --blue-20: #b3e5fc;
+    --blue-30: #81d4fa;
+    --blue-40: #4fc3f7;
+    --blue-50: #29b6f6;
+    --blue-60: #03a9f4;
+    --blue-70: #039be5;
+    --blue-80: #00aef0; /* primary blue */
+    --blue-90: #008fca;
+    --blue-100: #0074a3;
+    /* Profit color */
+    --green-profit: #008000;
+}
+
+.pnl-positive
+{
+    color: var(--green-profit);
+    font-weight: 600;
+}
+
+.pnl-negative
+{
+    color: var(--blue-80);
+    font-weight: 600;
+}
+
+h1
+{
+    font-family: Arial, Calibri, sans-serif;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+h2
+{
+    font-family: Arial, Calibri, sans-serif;
+    font-size: 22px;
+    font-weight: 500;
+}
+
+h3
+{
+    font-family: Arial, Calibri, sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+h4
+{
+    font-family: Arial, Calibri, sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+h5
+{
+    font-family: Arial, Calibri, sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+/* ---------- Generic page layout: Overview + side-by-side grids ---------- */
+.page-components
+{
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    margin: 0px 0px 0px 0px; /* top right bottom left */
+    padding: 0px 0px 0px 0px; /* top right bottom left */
+}
+
+/* The inner row that holds grid 1 + grid 2 side by side */
+.grid-component-columns
+{
+    display: flex;
+    align-items: flex-start;
+    gap: 0px;
+    margin: 0px 0px 0px 0px; /* top right bottom left */
+    padding: 0px 0px 0px 0px; /* top right bottom left */
+}
+
+/* ---------- Global Links & Buttons ---------- */
+a,
+.btn-link
+{
+    color: var(--black-80);
+    text-decoration: none;
+}
+
+.btn-primary
+{
+    background-color: var(--black-80);
+    border-color: var(--black-10);
+    color: var(--white);
+}
+
+/* ---------- Focus States ---------- */
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus
+{
+    box-shadow: 0 0 0 2px var(--white), 0 0 0 5px var(--black-10);
+}
+
+/* ---------- Headings ---------- */
+h1:focus
+{
+    outline: none;
+}
+
+/* ---------- Validation Styling ---------- */
+.valid.modified:not([type=checkbox])
+{
+    outline: 1px solid #26b050; /* green success */
+}
+
+.invalid
+{
+    outline: 1px solid #e50000; /* red error */
+}
+
+.validation-message
+{
+    color: #e50000;
+}
+
+/* ---------- Error Boundary ---------- */
+.blazor-error-boundary
+{
+    background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTYiIGhlaWdodD0iNDkiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIG92ZXJmbG93PSJoaWRkZW4iPjxkZWZzPjxjbGlwUGF0aCBpZD0iY2xpcDAiPjxyZWN0IHg9IjIzNSIgeT0iNTEiIHdpZHRoPSI1NiIgaGVpZ2h0PSI0OSIvPjwvY2xpcFBhdGg+PC9kZWZzPjxnIGNsaXAtcGF0aD0idXJsKCNjbGlwMCkiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0yMzUgLTUxKSI+PHBhdGggZD0iTTI2My41MDYgNTFDMjY0LjcxNyA1MSAyNjUuODEzIDUxLjQ4MzcgMjY2LjYwNiA1Mi4yNjU4TDI2Ny4wNTIgNTIuNzk4NyAyNjcuNTM5IDUzLjYyODMgMjkwLjE4NSA5Mi4xODMxIDI5MC41NDUgOTIuNzk1IDI5MC42NTYgOTIuOTk2QzI5MC44NzcgOTMuNTEzIDI5MSA5NC4wODE1IDI5MSA5NC42NzgyIDI5MSA5Ny4wNjUxIDI4OS4wMzggOTkgMjg2LjYxNyA5OUwyNDAuMzgzIDk5QzIzNy45NjMgOTkgMjM2IDk3LjA2NTEgMjM2IDk0LjY3ODIgMjM2IDk0LjM3OTkgMjM2LjAzMSA5NC4wODg2IDIzNi4wODkgOTMuODA3MkwyMzYuMzM4IDkzLjAxNjIgMjM2Ljg1OCA5Mi4xMzE0IDI1OS40NzMgNTMuNjI5NCAyNTkuOTYxIDUyLjc5ODUgMjYwLjQwNyA1Mi4yNjU4QzI2MS4yIDUxLjQ4MzcgMjYyLjI5NiA1MSAyNjMuNTA2IDUxWk0yNjMuNTg2IDY2LjAxODNDMjYwLjczNyA2Ni4wMTgzIDI1OS4zMTMgNjcuMTI0NSAyNTkuMzEzIDY5LjMzNyAyNTkuMzEzIDY5LjYxMDIgMjU5LjMzMiA2OS44NjA4IDI1OS4zNzEgNzAuMDg4N0wyNjEuNzk1IDg0LjAxNjEgMjY1LjM4IDg0LjAxNjEgMjY3LjgyMSA2OS43NDc1QzI2Ny44NiA2OS43MzA5IDI2Ny44NzkgNjkuNTg3NyAyNjcuODc5IDY5LjMxNzkgMjY3Ljg3OSA2Ny4xMTgyIDI2Ni40NDggNjYuMDE4MyAyNjMuNTg2IDY2LjAxODNaTTI2My41NzYgODYuMDU0N0MyNjEuMDQ5IDg2LjA1NDcgMjU5Ljc4NiA4Ny4zMDA1IDI1OS43ODYgODkuNzkyMSAyNTkuNzg2IDkyLjI4MzcgMjYxLjA0OSA5My41Mjk1IDI2My41NzYgOTMuNTI5NSAyNjYuMTE2IDkzLjUyOTUgMjY3LjM4NyA5Mi4yODM3IDI2Ny4zODcgODkuNzkyMSAyNjcuMzg3IDg3LjMwMDUgMjY2LjExNiA4Ni4wNTQ3IDI2My41NzYgODYuMDU0N1oiIGZpbGw9IiNGRkU1MDAiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPjwvZz48L3N2Zz4=) no-repeat 16px/29px, var(--black-80);
+    color: var(--black-80);
+    padding: 16px 16px 16px 60px;
+}
+
+    .blazor-error-boundary::after
+    {
+        color: var(--black-80);
+        content: "An error has occurred.";
+    }
+
+/* ---------- Form Checkbox Borders ---------- */
+.darker-border-checkbox.form-check-input
+{
+    border-color: var(--black-50);
+}
+
+/* ---------- Active Sub Nav Link ---------- */
+.page-sub-nav-link.active
+{
+    color: var(--blue-80);
+    font-weight: 600;
+}
+
+/* ---------- Global link hover & active colors ---------- */
+a:hover
+{
+    color: var(--blue-80);
+}
+
+a.active
+{
+    color: var(--blue-80);
+    font-weight: 600;
+}
+
+
+/* ---------- Top nav active state ---------- */
+.page-nav-link
+{
+    color: var(--black-80);
+    font-weight: 500;
+}
+
+    .page-nav-link.active
+    {
+        color: var(--blue-80);
+        font-weight: 600;
+    }
+
+
+/* ========== Text Panels ========== */
+
+.test-panel-grid
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.test-panel-col
+{
+    border: 1px solid #d0d0d0;
+    box-sizing: border-box;
+    padding: 10px 10px 10px 10px; /* top right bottom left */
+    margin: 0px 0px 0px 0px; /* top right bottom left */
+}
+
+
+.tick-monitor
+{
+    border: 0px solid var(--black-30);
+    margin: 0px 0px 0px 0px; /* top right bottom left */
+    padding: 10px 10px 10px 10px; /* top right bottom left */
+}
+
+
+
+
