@@ -1,0 +1,33 @@
+@page "/Overview/Analytics/05"
+@rendermode InteractiveServer
+
+<SubNav_00_Overview />
+<SubNav_00_Overview_Analytics />
+
+<section>
+
+    <h3>05 Overview Analytics - Test Panel</h3>
+
+    <div class="test-panel-grid">
+
+        <!-- Column 1: Message Log -->
+        <div class="test-panel-col">
+            <Page_Component_Message_Log />
+        </div>
+
+        <!-- Column 2: Tick Recorder -->
+        <div class="test-panel-col">
+            <Page_Component_TickRecorder />
+        </div>
+
+        <!-- Column 3: Tick Monitor -->
+        <div class="test-panel-col">
+            <Page_Component_TickMonitor Par_Title="05 Oanda Tick Monitor - EUR/USD"
+                                        Par_SymbolFilter="EUR/USD" />
+        </div>
+
+    </div>
+
+</section>
+
+
