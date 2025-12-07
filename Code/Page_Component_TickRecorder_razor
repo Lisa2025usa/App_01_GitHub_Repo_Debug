@@ -1,0 +1,162 @@
+@* Updated: 2025-12-04 04:05 PST - Tick recorder viewer with visible Clear diagnostics *@
+
+@inject ITickSource_Recorder_Service TickRecorder
+
+@implements IDisposable
+
+<section>
+	<h3>Tick Recorder - Recent Ticks</h3>
+
+	<div>
+		<span>
+			Showing last @Var_MaxCount ticks since
+			@if (Var_LastClearedUtc == DateTime.MinValue)
+			{
+				<text>session start</text>
+			}
+			else
+			{
+				<text>@Var_LastClearedUtc.ToLocalTime()</text>
+			}
+			. Recorder buffer: @TickRecorder.Count total. Local snapshot: @Var_Ticks.Count ticks.
+		</span>
+	</div>
+
+	<div>
+		<p>
+			Last cleared at:
+			@if (Var_LastClearedLocal == null)
+			{
+				<text>(not cleared yet this session)</text>
+			}
+			else
+			{
+				<text>@Var_LastClearedLocal</text>
+			}
+		</p>
+	</div>
+
+	<div>
+		<button type="button" @onclick="ClearTicks">Clear Recorder Buffer</button>
+	</div>
+
+	@if (Var_Ticks == null || Var_Ticks.Count == 0)
+	{
+		<p>No recorded ticks yet.</p>
+	}
+	else
+	{
+		<table>
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Time (Local)</th>
+					<th>Symbol</th>
+					<th>Bid</th>
+					<th>Ask</th>
+					<th>Last</th>
+				</tr>
+			</thead>
+			<tbody>
+				@for (int i = 0; i < Var_Ticks.Count; i++)
+				{
+					MarketTick tick = Var_Ticks[i];
+
+					<tr>
+						<td>@(i + 1)</td>
+						<td>@tick.TimestampUtc.ToLocalTime()</td>
+						<td>@tick.Symbol</td>
+						<td>@tick.Bid</td>
+						<td>@tick.Ask</td>
+						<td>@tick.Last</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	}
+</section>
+
+@code {
+	private IReadOnlyList<MarketTick> Var_Ticks = Array.Empty<MarketTick>();
+	private int Var_MaxCount = 200;
+
+	private bool Var_IsRunning = false;
+	private PeriodicTimer? Var_Timer;
+
+	// Marks the "start" of the current visible session
+	private DateTime Var_LastClearedUtc = DateTime.MinValue;
+
+	// Local diagnostic: when the Clear button was last pressed (local time)
+	private DateTime? Var_LastClearedLocal = null;
+
+	protected override void OnInitialized()
+	{
+		Var_IsRunning = true;
+		Var_Timer = new PeriodicTimer(TimeSpan.FromSeconds(1));
+
+		// First snapshot for initial render
+		Var_Ticks = GetFilteredTicks();
+
+		_ = RefreshLoop();
+	}
+
+	private async Task RefreshLoop()
+	{
+		if (Var_Timer is null)
+		{
+			return;
+		}
+
+		while (Var_IsRunning && await Var_Timer.WaitForNextTickAsync())
+		{
+			Var_Ticks = GetFilteredTicks();
+			await InvokeAsync(StateHasChanged);
+		}
+	}
+
+	private IReadOnlyList<MarketTick> GetFilteredTicks()
+	{
+		// Get up to Var_MaxCount ticks from the recorder
+		var raw = TickRecorder.GetRecentTicks(Var_MaxCount);
+
+		// If we have never "cleared", just return them as-is
+		if (Var_LastClearedUtc == DateTime.MinValue)
+		{
+			return raw;
+		}
+
+		// Otherwise, only show ticks that arrived after the last Clear
+		var filtered = raw
+			.Where(tick => tick.TimestampUtc >= Var_LastClearedUtc)
+			.ToList();
+
+		return filtered;
+	}
+
+	private async void ClearTicks()
+	{
+		// Clear underlying buffer
+		TickRecorder.Clear();
+
+		// Mark the "new session" start time (UTC + local)
+		var nowLocal = DateTime.Now;
+		Var_LastClearedLocal = nowLocal;
+		Var_LastClearedUtc = nowLocal.ToUniversalTime();
+
+		// Clear local snapshot immediately
+		Var_Ticks = Array.Empty<MarketTick>();
+
+		// Force an immediate UI refresh so rows disappear right away
+		await InvokeAsync(StateHasChanged);
+	}
+
+	public void Dispose()
+	{
+		Var_IsRunning = false;
+
+		if (Var_Timer is not null)
+		{
+			Var_Timer.Dispose();
+		}
+	}
+}
