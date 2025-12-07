@@ -1,0 +1,44 @@
+@using TradingAppProject.Service.All
+@* Updated: 2025-12-01 06:40 PST - Global live view of Service_Message log *@
+@implements IDisposable
+
+<div class="messages-log scrollable">
+    @if (Messages.Count == 0)
+    {
+        <div class="message">No messages yet.</div>
+    }
+    else
+    {
+        @foreach (var line in Messages)
+        {
+            <div class="message">@line</div>
+        }
+    }
+</div>
+
+@code
+{
+    [Inject] private Message_Service MessageService { get; set; } = default!;
+
+    private List<string> Messages = [];
+
+    protected override void OnInitialized()
+    {
+        // Initial snapshot
+        Messages = [.. MessageService.Messages];
+
+        // Subscribe for live updates
+        MessageService.OnMessagesChanged += HandleMessagesChanged;
+    }
+
+    private void HandleMessagesChanged()
+    {
+        Messages = [.. MessageService.Messages];
+        _ = InvokeAsync(StateHasChanged);
+    }
+
+    public void Dispose()
+    {
+        MessageService.OnMessagesChanged -= HandleMessagesChanged;
+    }
+}
