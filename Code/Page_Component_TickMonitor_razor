@@ -1,0 +1,102 @@
+@using TradingAppProject.Service.MarketData
+@* Updated: 2025-12-06 23:30 PST - Live tick monitor with title + optional symbol filter *@
+
+@inject TickSource_Manager_Service TickSourceManager
+@implements IDisposable
+
+<div class="tick-monitor">
+    <h3>@Par_Title</h3>
+
+    @if (!_filteredTicks.Any())
+    {
+        <p>No ticks received yet.</p>
+    }
+    else
+    {
+        <table class="grid">
+            <thead>
+                <tr>
+                    <th>Symbol</th>
+                    <th>Last</th>
+                    <th>Bid</th>
+                    <th>Ask</th>
+                    <th>Time (Local)</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var tick in _filteredTicks)
+                {
+                    <tr>
+                        <td>@tick.Symbol</td>
+                        <td>@tick.Last</td>
+                        <td>@tick.Bid</td>
+                        <td>@tick.Ask</td>
+                        <td>@tick.TimestampUtc.ToLocalTime()</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
+
+@code {
+    // ----- Parameters -----
+
+    /// <summary>
+    /// Title displayed above the tick monitor.
+    /// </summary>
+    [Parameter]
+    public string Par_Title { get; set; } = "Live Tick Monitor (Test)";
+
+    /// <summary>
+    /// Optional symbol filter. If set (e.g. "EUR/USD" or "MESZ5.CME"),
+    /// only ticks for that symbol will be shown. If null/empty, all
+    /// symbols in the snapshot are displayed.
+    /// </summary>
+    [Parameter]
+    public string? Par_SymbolFilter { get; set; }
+
+    // ----- Internal state -----
+
+    private IReadOnlyDictionary<string, MarketTick> _snapshot =
+        new Dictionary<string, MarketTick>();
+
+    private IEnumerable<MarketTick> _filteredTicks = Enumerable.Empty<MarketTick>();
+
+    protected override void OnInitialized()
+    {
+        _snapshot = TickSourceManager.GetSnapshot();
+        RebuildFilteredTicks();
+
+        // OnTickUpdated is Action<MarketTick>
+        TickSourceManager.OnTickUpdated += HandleTick;
+    }
+
+    // Must match Action<MarketTick>: returns void, takes MarketTick
+    private void HandleTick(MarketTick tick)
+    {
+        _snapshot = TickSourceManager.GetSnapshot();
+        RebuildFilteredTicks();
+
+        // Just fire the UI update; we don't need the Task
+        InvokeAsync(StateHasChanged);
+    }
+
+    private void RebuildFilteredTicks()
+    {
+        IEnumerable<KeyValuePair<string, MarketTick>> query = _snapshot.OrderBy(x => x.Key);
+
+        if (!string.IsNullOrWhiteSpace(Par_SymbolFilter))
+        {
+            query = query.Where(kvp =>
+                string.Equals(kvp.Key, Par_SymbolFilter, StringComparison.OrdinalIgnoreCase));
+        }
+
+        _filteredTicks = query.Select(kvp => kvp.Value);
+    }
+
+    public void Dispose()
+    {
+        TickSourceManager.OnTickUpdated -= HandleTick;
+    }
+}
