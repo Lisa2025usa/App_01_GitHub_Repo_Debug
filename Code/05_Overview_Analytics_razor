@@ -24,7 +24,7 @@
 
         <!-- Column 3: Tick Monitor -->
         <div class="test-panel-col">
-            <Page_Component_TickMonitor Par_Title="Oanda Tick Monitor - EUR/USD"
+            <Page_Component_TickMonitor Par_Title="Tick Monitor - All"
                                         Par_SymbolFilter="EUR/USD" />
         </div>
 
