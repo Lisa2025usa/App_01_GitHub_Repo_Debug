@@ -223,9 +223,10 @@ a.active
 {
     border: 1px solid #d0d0d0;
     box-sizing: border-box;
-    height: 100%;
-    margin: 0px 0px 0px 0px; /* top right bottom left */
-    padding: 10px 10px 10px 10px; /* top right bottom left */
+    height: 640px;
+    overflow-y: auto;
+    margin: 0px 0px 0px 0px;
+    padding: 10px 10px 10px 10px;
 }
 
 .test-panel-header
@@ -267,12 +268,10 @@ a.active
 {
     box-sizing: border-box;
     font-family: Arial, Calibri, sans-serif;
-    font-size: 13px;
+    font-size: 12px;
     line-height: 1.4;
-    max-height: 100%;
-    overflow-y: auto;
-    margin: 0px 0px 0px 0px; /* top right bottom left */
-    padding: 0px 0px 0px 0px; /* top right bottom left */
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
 }
 
 .test-panel-message-log-row
