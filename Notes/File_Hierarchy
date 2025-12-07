@@ -1,415 +1,674 @@
 Folder PATH listing for volume website
 Volume serial number is 70CB-50D4
 K:.
-ª   appsettings.Development.json
-ª   appsettings.json
-ª   GlobalUsings.cs
-ª   Program.cs
-ª   TradingAppProject.csproj
-ª   TradingAppProject.csproj.user
+ª   TradingAppSolution.sln
 ª   
-+---bin
-ª   +---Debug
-ª       +---net8.0
-+---BlankNew
-ª   ª   Blank_New.cs
-ª   ª   Blank_New_01.razor
-ª   ª   Blank_New_01.razor.css
++---TradingAppProject
+ª   ª   appsettings.Development.json
+ª   ª   appsettings.json
+ª   ª   GlobalUsings.cs
+ª   ª   Program.cs
+ª   ª   TradingAppProject.csproj
+ª   ª   TradingAppProject.csproj.user
 ª   ª   
-ª   +---New_Folder
-+---Component
-ª   ª   App.razor
-ª   ª   Routes.razor
-ª   ª   _Imports.razor
-ª   ª   
-ª   +---Distributed
-ª   ª   +---Control
-ª   ª   +---Header
-ª   ª   +---Modal
-ª   ª   +---Panel
-ª   ª   +---Widget
-ª   +---Layout
-ª   ª       MainLayout.razor
-ª   ª       MainLayout.razor.css
-ª   ª       NavMenu.razor
-ª   ª       NavMenu.razor.css
-ª   ª       PageSubNav.razor
-ª   ª       PageSubNav.razor.css
-ª   ª       SubNav_00_Overview.razor
-ª   ª       SubNav_00_Overview.razor.css
-ª   ª       SubNav_00_Overview_Analytics.razor
-ª   ª       SubNav_00_Overview_Analytics.razor.css
-ª   ª       SubNav_00_Overview_Reports.razor
-ª   ª       SubNav_00_Overview_Reports.razor.css
-ª   ª       SubNav_01_Oanda.razor
-ª   ª       SubNav_01_Oanda.razor.css
-ª   ª       SubNav_01_Oanda_Analytics.razor
-ª   ª       SubNav_01_Oanda_Analytics.razor.css
-ª   ª       SubNav_01_Oanda_Reports.razor
-ª   ª       SubNav_01_Oanda_Reports.razor.css
-ª   ª       SubNav_02_Sierra_PST.razor
-ª   ª       SubNav_02_Sierra_PST.razor.css
-ª   ª       SubNav_02_Sierra_PST_Analytics.razor
-ª   ª       SubNav_02_Sierra_PST_Analytics.razor.css
-ª   ª       SubNav_02_Sierra_PST_Reports.razor
-ª   ª       SubNav_02_Sierra_PST_Reports.razor.css
-ª   ª       SubNav_03_Sierra_AMP.razor
-ª   ª       SubNav_03_Sierra_AMP.razor.css
-ª   ª       SubNav_03_Sierra_AMP_Analytics.razor
-ª   ª       SubNav_03_Sierra_AMP_Analytics.razor.css
-ª   ª       SubNav_03_Sierra_AMP_Reports.razor
-ª   ª       SubNav_03_Sierra_AMP_Reports.razor.css
-ª   ª       SubNav_04_Ninja_Tradeify.razor
-ª   ª       SubNav_04_Ninja_Tradeify.razor.css
-ª   ª       SubNav_04_Ninja_Tradeify_Analytics.razor
-ª   ª       SubNav_04_Ninja_Tradeify_Analytics.razor.css
-ª   ª       SubNav_04_Ninja_Tradeify_Reports.razor
-ª   ª       SubNav_04_Ninja_Tradeify_Reports.razor.css
-ª   ª       SubNav_05_Alpaca.razor
-ª   ª       SubNav_05_Alpaca.razor.css
-ª   ª       SubNav_05_Alpaca_Analytics.razor
-ª   ª       SubNav_05_Alpaca_Analytics.razor.css
-ª   ª       SubNav_05_Alpaca_Reports.razor
-ª   ª       SubNav_05_Alpaca_Reports.razor.css
+ª   +---bin
+ª   ª   +---Debug
+ª   ª       +---net8.0
+ª   ª               appsettings.Development.json
+ª   ª               appsettings.json
+ª   ª               TradingAppProject.deps.json
+ª   ª               TradingAppProject.dll
+ª   ª               TradingAppProject.exe
+ª   ª               TradingAppProject.pdb
+ª   ª               TradingAppProject.runtimeconfig.json
+ª   ª               TradingAppProject.staticwebassets.endpoints.json
+ª   ª               TradingAppProject.staticwebassets.runtime.json
+ª   ª               
+ª   +---BlankNew
+ª   ª   ª   Blank_New.cs
+ª   ª   ª   Blank_New_01.razor
+ª   ª   ª   Blank_New_01.razor.css
+ª   ª   ª   
+ª   ª   +---New_Folder
+ª   +---Component
+ª   ª   ª   App.razor
+ª   ª   ª   Routes.razor
+ª   ª   ª   _Imports.razor
+ª   ª   ª   
+ª   ª   +---Distributed
+ª   ª   ª   +---Control
+ª   ª   ª   +---Header
+ª   ª   ª   +---Modal
+ª   ª   ª   +---Panel
+ª   ª   ª   +---Widget
+ª   ª   +---Layout
+ª   ª   ª       MainLayout.razor
+ª   ª   ª       MainLayout.razor.css
+ª   ª   ª       NavMenu.razor
+ª   ª   ª       NavMenu.razor.css
+ª   ª   ª       PageSubNav.razor
+ª   ª   ª       PageSubNav.razor.css
+ª   ª   ª       SubNav_00_Overview.razor
+ª   ª   ª       SubNav_00_Overview.razor.css
+ª   ª   ª       SubNav_00_Overview_Analytics.razor
+ª   ª   ª       SubNav_00_Overview_Analytics.razor.css
+ª   ª   ª       SubNav_00_Overview_Reports.razor
+ª   ª   ª       SubNav_00_Overview_Reports.razor.css
+ª   ª   ª       SubNav_01_Oanda.razor
+ª   ª   ª       SubNav_01_Oanda.razor.css
+ª   ª   ª       SubNav_01_Oanda_Analytics.razor
+ª   ª   ª       SubNav_01_Oanda_Analytics.razor.css
+ª   ª   ª       SubNav_01_Oanda_Reports.razor
+ª   ª   ª       SubNav_01_Oanda_Reports.razor.css
+ª   ª   ª       SubNav_02_Sierra_PST.razor
+ª   ª   ª       SubNav_02_Sierra_PST.razor.css
+ª   ª   ª       SubNav_02_Sierra_PST_Analytics.razor
+ª   ª   ª       SubNav_02_Sierra_PST_Analytics.razor.css
+ª   ª   ª       SubNav_02_Sierra_PST_Reports.razor
+ª   ª   ª       SubNav_02_Sierra_PST_Reports.razor.css
+ª   ª   ª       SubNav_03_Sierra_AMP.razor
+ª   ª   ª       SubNav_03_Sierra_AMP.razor.css
+ª   ª   ª       SubNav_03_Sierra_AMP_Analytics.razor
+ª   ª   ª       SubNav_03_Sierra_AMP_Analytics.razor.css
+ª   ª   ª       SubNav_03_Sierra_AMP_Reports.razor
+ª   ª   ª       SubNav_03_Sierra_AMP_Reports.razor.css
+ª   ª   ª       SubNav_04_Ninja_Tradeify.razor
+ª   ª   ª       SubNav_04_Ninja_Tradeify.razor.css
+ª   ª   ª       SubNav_04_Ninja_Tradeify_Analytics.razor
+ª   ª   ª       SubNav_04_Ninja_Tradeify_Analytics.razor.css
+ª   ª   ª       SubNav_04_Ninja_Tradeify_Reports.razor
+ª   ª   ª       SubNav_04_Ninja_Tradeify_Reports.razor.css
+ª   ª   ª       SubNav_05_Alpaca.razor
+ª   ª   ª       SubNav_05_Alpaca.razor.css
+ª   ª   ª       SubNav_05_Alpaca_Analytics.razor
+ª   ª   ª       SubNav_05_Alpaca_Analytics.razor.css
+ª   ª   ª       SubNav_05_Alpaca_Reports.razor
+ª   ª   ª       SubNav_05_Alpaca_Reports.razor.css
+ª   ª   ª       
+ª   ª   +---Page
+ª   ª       ª   Error.razor
+ª   ª       ª   
+ª   ª       +---00_Overview
+ª   ª       ª   ª   01_Overview_Trade01.razor
+ª   ª       ª   ª   01_Overview_Trade01.razor.css
+ª   ª       ª   ª   02_Overview_Trade02.razor
+ª   ª       ª   ª   02_Overview_Trade02.razor.css
+ª   ª       ª   ª   03_Overview_Trade03.razor
+ª   ª       ª   ª   03_Overview_Trade03.razor.css
+ª   ª       ª   ª   
+ª   ª       ª   +---04_Overview_Analytics
+ª   ª       ª   ª       01_Overview_Analytics.razor
+ª   ª       ª   ª       01_Overview_Analytics.razor.css
+ª   ª       ª   ª       02_Overview_Analytics.razor
+ª   ª       ª   ª       02_Overview_Analytics.razor.css
+ª   ª       ª   ª       03_Overview_Analytics.razor
+ª   ª       ª   ª       03_Overview_Analytics.razor.css
+ª   ª       ª   ª       04_Overview_Analytics.razor
+ª   ª       ª   ª       04_Overview_Analytics.razor.css
+ª   ª       ª   ª       05_Overview_Analytics.razor
+ª   ª       ª   ª       05_Overview_Analytics.razor.css
+ª   ª       ª   ª       
+ª   ª       ª   +---05_Overview_Reports
+ª   ª       ª           01_Overview_Reports.razor
+ª   ª       ª           01_Overview_Reports.razor.css
+ª   ª       ª           02_Overview_Reports.razor
+ª   ª       ª           02_Overview_Reports.razor.css
+ª   ª       ª           03_Overview_Reports.razor
+ª   ª       ª           03_Overview_Reports.razor.css
+ª   ª       ª           04_Overview_Reports.razor
+ª   ª       ª           04_Overview_Reports.razor.css
+ª   ª       ª           05_Overview_Reports.razor
+ª   ª       ª           05_Overview_Reports.razor.css
+ª   ª       ª           
+ª   ª       +---01_Oanda
+ª   ª       ª   ª   01_Oanda_RT.razor
+ª   ª       ª   ª   01_Oanda_RT.razor.css
+ª   ª       ª   ª   02_Oanda_RM.razor
+ª   ª       ª   ª   02_Oanda_RM.razor.css
+ª   ª       ª   ª   03_Oanda_C.razor
+ª   ª       ª   ª   03_Oanda_C.razor.css
+ª   ª       ª   ª   
+ª   ª       ª   +---04_Oanda_Analytics
+ª   ª       ª   ª       01_Oanda_Analytics.razor
+ª   ª       ª   ª       01_Oanda_Analytics.razor.css
+ª   ª       ª   ª       02_Oanda_Analytics.razor
+ª   ª       ª   ª       02_Oanda_Analytics.razor.css
+ª   ª       ª   ª       03_Oanda_Analytics.razor
+ª   ª       ª   ª       03_Oanda_Analytics.razor.css
+ª   ª       ª   ª       04_Oanda_Analytics.razor
+ª   ª       ª   ª       04_Oanda_Analytics.razor.css
+ª   ª       ª   ª       05_Oanda_Analytics.razor
+ª   ª       ª   ª       05_Oanda_Analytics.razor.css
+ª   ª       ª   ª       
+ª   ª       ª   +---05_Oanda_Reports
+ª   ª       ª           01_Oanda_Reports.razor
+ª   ª       ª           01_Oanda_Reports.razor.css
+ª   ª       ª           02_Oanda_Reports.razor
+ª   ª       ª           02_Oanda_Reports.razor.css
+ª   ª       ª           03_Oanda_Reports.razor
+ª   ª       ª           03_Oanda_Reports.razor.css
+ª   ª       ª           04_Oanda_Reports.razor
+ª   ª       ª           04_Oanda_Reports.razor.css
+ª   ª       ª           05_Oanda_Reports.razor
+ª   ª       ª           05_Oanda_Reports.razor.css
+ª   ª       ª           
+ª   ª       +---02_Sierra_PST
+ª   ª       ª   ª   01_Sierra_PST_RT.razor
+ª   ª       ª   ª   01_Sierra_PST_RT.razor.css
+ª   ª       ª   ª   02_Sierra_PST_RM.razor
+ª   ª       ª   ª   02_Sierra_PST_RM.razor.css
+ª   ª       ª   ª   03_Sierra_PST_C.razor
+ª   ª       ª   ª   03_Sierra_PST_C.razor.css
+ª   ª       ª   ª   04_Sierra_PST_H.razor
+ª   ª       ª   ª   04_Sierra_PST_H.razor.css
+ª   ª       ª   ª   
+ª   ª       ª   +---05_Sierra_PST_Analytics
+ª   ª       ª   ª       01_Sierra_PST_Analytics.razor
+ª   ª       ª   ª       01_Sierra_PST_Analytics.razor.css
+ª   ª       ª   ª       02_Sierra_PST_Analytics.razor
+ª   ª       ª   ª       02_Sierra_PST_Analytics.razor.css
+ª   ª       ª   ª       03_Sierra_PST_Analytics.razor
+ª   ª       ª   ª       03_Sierra_PST_Analytics.razor.css
+ª   ª       ª   ª       04_Sierra_PST_Analytics.razor
+ª   ª       ª   ª       04_Sierra_PST_Analytics.razor.css
+ª   ª       ª   ª       05_Sierra_PST_Analytics.razor
+ª   ª       ª   ª       05_Sierra_PST_Analytics.razor.css
+ª   ª       ª   ª       
+ª   ª       ª   +---06_Sierra_PST_Reports
+ª   ª       ª           01_Sierra_PST_Reports.razor
+ª   ª       ª           01_Sierra_PST_Reports.razor.css
+ª   ª       ª           02_Sierra_PST_Reports.razor
+ª   ª       ª           02_Sierra_PST_Reports.razor.css
+ª   ª       ª           03_Sierra_PST_Reports.razor
+ª   ª       ª           03_Sierra_PST_Reports.razor.css
+ª   ª       ª           04_Sierra_PST_Reports.razor
+ª   ª       ª           04_Sierra_PST_Reports.razor.css
+ª   ª       ª           05_Sierra_PST_Reports.razor
+ª   ª       ª           05_Sierra_PST_Reports.razor.css
+ª   ª       ª           
+ª   ª       +---03_Sierra_AMP
+ª   ª       ª   ª   01_Sierra_AMP_RT.razor
+ª   ª       ª   ª   01_Sierra_AMP_RT.razor.css
+ª   ª       ª   ª   02_Sierra_AMP_RM.razor
+ª   ª       ª   ª   02_Sierra_AMP_RM.razor.css
+ª   ª       ª   ª   03_Sierra_AMP_C.razor
+ª   ª       ª   ª   03_Sierra_AMP_C.razor.css
+ª   ª       ª   ª   04_Sierra_AMP_H.razor
+ª   ª       ª   ª   04_Sierra_AMP_H.razor.css
+ª   ª       ª   ª   
+ª   ª       ª   +---05_Sierra_AMP_Analytics
+ª   ª       ª   ª       01_Sierra_AMP_Analytics.razor
+ª   ª       ª   ª       01_Sierra_AMP_Analytics.razor.css
+ª   ª       ª   ª       02_Sierra_AMP_Analytics.razor
+ª   ª       ª   ª       02_Sierra_AMP_Analytics.razor.css
+ª   ª       ª   ª       03_Sierra_AMP_Analytics.razor
+ª   ª       ª   ª       03_Sierra_AMP_Analytics.razor.css
+ª   ª       ª   ª       04_Sierra_AMP_Analytics.razor
+ª   ª       ª   ª       04_Sierra_AMP_Analytics.razor.css
+ª   ª       ª   ª       05_Sierra_AMP_Analytics.razor
+ª   ª       ª   ª       05_Sierra_AMP_Analytics.razor.css
+ª   ª       ª   ª       
+ª   ª       ª   +---06_Sierra_AMP_Reports
+ª   ª       ª           01_Sierra_AMP_Reports.razor
+ª   ª       ª           01_Sierra_AMP_Reports.razor.css
+ª   ª       ª           02_Sierra_AMP_Reports.razor
+ª   ª       ª           02_Sierra_AMP_Reports.razor.css
+ª   ª       ª           03_Sierra_AMP_Reports.razor
+ª   ª       ª           03_Sierra_AMP_Reports.razor.css
+ª   ª       ª           04_Sierra_AMP_Reports.razor
+ª   ª       ª           04_Sierra_AMP_Reports.razor.css
+ª   ª       ª           05_Sierra_AMP_Reports.razor
+ª   ª       ª           05_Sierra_AMP_Reports.razor.css
+ª   ª       ª           
+ª   ª       +---04_Ninja_Tradeify
+ª   ª       ª   ª   01_Ninja_Tradeify_RT.razor
+ª   ª       ª   ª   01_Ninja_Tradeify_RT.razor.css
+ª   ª       ª   ª   02_Ninja_Tradeify_RM.razor
+ª   ª       ª   ª   02_Ninja_Tradeify_RM.razor.css
+ª   ª       ª   ª   03_Ninja_Tradeify_C.razor
+ª   ª       ª   ª   03_Ninja_Tradeify_C.razor.css
+ª   ª       ª   ª   04_Ninja_Tradeify_H.razor
+ª   ª       ª   ª   04_Ninja_Tradeify_H.razor.css
+ª   ª       ª   ª   
+ª   ª       ª   +---05_Ninja_Tradeify_Analytics
+ª   ª       ª   ª       01_Ninja_Tradeify_Analytics.razor
+ª   ª       ª   ª       01_Ninja_Tradeify_Analytics.razor.css
+ª   ª       ª   ª       02_Ninja_Tradeify_Analytics.razor
+ª   ª       ª   ª       02_Ninja_Tradeify_Analytics.razor.css
+ª   ª       ª   ª       03_Ninja_Tradeify_Analytics.razor
+ª   ª       ª   ª       03_Ninja_Tradeify_Analytics.razor.css
+ª   ª       ª   ª       04_Ninja_Tradeify_Analytics.razor
+ª   ª       ª   ª       04_Ninja_Tradeify_Analytics.razor.css
+ª   ª       ª   ª       05_Ninja_Tradeify_Analytics.razor
+ª   ª       ª   ª       05_Ninja_Tradeify_Analytics.razor.css
+ª   ª       ª   ª       
+ª   ª       ª   +---06_Ninja_Tradeify_Reports
+ª   ª       ª           01_Ninja_Tradeify_Reports.razor
+ª   ª       ª           01_Ninja_Tradeify_Reports.razor.css
+ª   ª       ª           02_Ninja_Tradeify_Reports.razor
+ª   ª       ª           02_Ninja_Tradeify_Reports.razor.css
+ª   ª       ª           03_Ninja_Tradeify_Reports.razor
+ª   ª       ª           03_Ninja_Tradeify_Reports.razor.css
+ª   ª       ª           04_Ninja_Tradeify_Reports.razor
+ª   ª       ª           04_Ninja_Tradeify_Reports.razor.css
+ª   ª       ª           05_Ninja_Tradeify_Reports.razor
+ª   ª       ª           05_Ninja_Tradeify_Reports.razor.css
+ª   ª       ª           
+ª   ª       +---05_Alpaca
+ª   ª       ª   ª   01_Alpaca_RT.razor
+ª   ª       ª   ª   01_Alpaca_RT.razor.css
+ª   ª       ª   ª   02_Alpaca_RM.razor
+ª   ª       ª   ª   02_Alpaca_RM.razor.css
+ª   ª       ª   ª   03_Alpaca_C.razor
+ª   ª       ª   ª   03_Alpaca_C.razor.css
+ª   ª       ª   ª   04_Alpaca_H.razor
+ª   ª       ª   ª   04_Alpaca_H.razor.css
+ª   ª       ª   ª   
+ª   ª       ª   +---05_Alpaca_Analytics
+ª   ª       ª   ª       01_Alpaca_Analytics.razor
+ª   ª       ª   ª       01_Alpaca_Analytics.razor.css
+ª   ª       ª   ª       02_Alpaca_Analytics.razor
+ª   ª       ª   ª       02_Alpaca_Analytics.razor.css
+ª   ª       ª   ª       03_Alpaca_Analytics.razor
+ª   ª       ª   ª       03_Alpaca_Analytics.razor.css
+ª   ª       ª   ª       04_Alpaca_Analytics.razor
+ª   ª       ª   ª       04_Alpaca_Analytics.razor.css
+ª   ª       ª   ª       05_Alpaca_Analytics.razor
+ª   ª       ª   ª       05_Alpaca_Analytics.razor.css
+ª   ª       ª   ª       
+ª   ª       ª   +---06_Alpaca_Reports
+ª   ª       ª           01_Alpaca_Reports.razor
+ª   ª       ª           01_Alpaca_Reports.razor.css
+ª   ª       ª           02_Alpaca_Reports.razor
+ª   ª       ª           02_Alpaca_Reports.razor.css
+ª   ª       ª           03_Alpaca_Reports.razor
+ª   ª       ª           03_Alpaca_Reports.razor.css
+ª   ª       ª           04_Alpaca_Reports.razor
+ª   ª       ª           04_Alpaca_Reports.razor.css
+ª   ª       ª           05_Alpaca_Reports.razor
+ª   ª       ª           05_Alpaca_Reports.razor.css
+ª   ª       ª           
+ª   ª       +---Extra
+ª   ª       ª       Daily_PnL_Report.razor
+ª   ª       ª       Daily_PnL_Report.razor.css
+ª   ª       ª       Realtime_Account_Stats.razor
+ª   ª       ª       Realtime_Account_Stats.razor.css
+ª   ª       ª       Realtime_Stats_Overview.razor
+ª   ª       ª       Realtime_Stats_Overview.razor.css
+ª   ª       ª       Realtime_Symbol_Stats.razor
+ª   ª       ª       Realtime_Symbol_Stats.razor.css
+ª   ª       ª       Session_Review_Report.razor
+ª   ª       ª       Session_Review_Report.razor.css
+ª   ª       ª       System_Performance_Report.razor
+ª   ª       ª       System_Performance_Report.razor.css
+ª   ª       ª       Weekly_PnL_Report.razor
+ª   ª       ª       Weekly_PnL_Report.razor.css
+ª   ª       ª       
+ª   ª       +---Page_Component
+ª   ª       ª       Page_Component_Grid_9Col.razor
+ª   ª       ª       Page_Component_Grid_9Col.razor.css
+ª   ª       ª       Page_Component_Grid_C.razor
+ª   ª       ª       Page_Component_Grid_C.razor.css
+ª   ª       ª       Page_Component_Grid_H.razor
+ª   ª       ª       Page_Component_Grid_H.razor.css
+ª   ª       ª       Page_Component_Grid_RM.razor
+ª   ª       ª       Page_Component_Grid_RM.razor.css
+ª   ª       ª       Page_Component_Grid_RT.razor
+ª   ª       ª       Page_Component_Grid_RT.razor.css
+ª   ª       ª       Page_Component_Overview_H.razor
+ª   ª       ª       Page_Component_Overview_H.razor.css
+ª   ª       ª       Page_Component_Overview_R.razor
+ª   ª       ª       Page_Component_Overview_R.razor.css
+ª   ª       ª       Page_Component_SystemMessage.razor
+ª   ª       ª       Page_Component_SystemMessage.razor.css
+ª   ª       ª       Page_Component_SystemMessage_Content.razor
+ª   ª       ª       Page_Component_SystemMessage_Content.razor.css
+ª   ª       ª       Page_Component_TickMonitor.razor
+ª   ª       ª       Page_Component_TickMonitor.razor.css
+ª   ª       ª       Page_Component_TickRecorder.razor
+ª   ª       ª       Page_Component_TickRecorder.razor.css
+ª   ª       ª       
+ª   ª       +---Script
+ª   ª               Scripts_Home.razor
+ª   ª               Scripts_Home.razor.css
+ª   ª               Script_Backtest_Results.razor
+ª   ª               Script_Backtest_Results.razor.css
+ª   ª               Script_Editor.razor
+ª   ª               Script_Editor.razor.css
+ª   ª               Script_Library.razor
+ª   ª               Script_Library.razor.css
+ª   ª               
+ª   +---Model
+ª   ª       C_Broker_Status.cs
+ª   ª       C_Field.cs
+ª   ª       C_Order_Request.cs
+ª   ª       C_Position.cs
+ª   ª       C_Report_Summary.cs
+ª   ª       C_System_Message.cs
+ª   ª       C_Trade_Record.cs
+ª   ª       C_Trading_Script.cs
 ª   ª       
-ª   +---Page
-ª       ª   Error.razor
+ª   +---obj
+ª   ª   ª   project.assets.json
+ª   ª   ª   project.nuget.cache
+ª   ª   ª   TradingAppProject.csproj.nuget.dgspec.json
+ª   ª   ª   TradingAppProject.csproj.nuget.g.props
+ª   ª   ª   TradingAppProject.csproj.nuget.g.targets
+ª   ª   ª   
+ª   ª   +---Debug
+ª   ª       +---net8.0
+ª   ª           ª   .NETCoreApp,Version=v8.0.AssemblyAttributes.cs
+ª   ª           ª   ApiEndpoints.json
+ª   ª           ª   apphost.exe
+ª   ª           ª   rjimswa.dswa.cache.json
+ª   ª           ª   rjsmcshtml.dswa.cache.json
+ª   ª           ª   rjsmrazor.dswa.cache.json
+ª   ª           ª   rpswa.dswa.cache.json
+ª   ª           ª   staticwebassets.build.endpoints.json
+ª   ª           ª   staticwebassets.build.json
+ª   ª           ª   staticwebassets.build.json.cache
+ª   ª           ª   staticwebassets.development.json
+ª   ª           ª   staticwebassets.references.upToDateCheck.txt
+ª   ª           ª   staticwebassets.removed.txt
+ª   ª           ª   staticwebassets.upToDateCheck.txt
+ª   ª           ª   TradingAppProject.AssemblyInfo.cs
+ª   ª           ª   TradingAppProject.AssemblyInfoInputs.cache
+ª   ª           ª   TradingAppProject.assets.cache
+ª   ª           ª   TradingAppProject.csproj.BuildWithSkipAnalyzers
+ª   ª           ª   TradingAppProject.csproj.CoreCompileInputs.cache
+ª   ª           ª   TradingAppProject.csproj.FileListAbsolute.txt
+ª   ª           ª   TradingAppProject.dll
+ª   ª           ª   TradingAppProject.GeneratedMSBuildEditorConfig.editorconfig
+ª   ª           ª   TradingAppProject.genruntimeconfig.cache
+ª   ª           ª   TradingAppProject.GlobalUsings.g.cs
+ª   ª           ª   TradingAppProject.MvcApplicationPartsAssemblyInfo.cache
+ª   ª           ª   TradingAppProject.pdb
+ª   ª           ª   
+ª   ª           +---ref
+ª   ª           ª       TradingAppProject.dll
+ª   ª           ª       
+ª   ª           +---refint
+ª   ª           ª       TradingAppProject.dll
+ª   ª           ª       
+ª   ª           +---scopedcss
+ª   ª           ª   +---BlankNew
+ª   ª           ª   ª       Blank_New_01.razor.rz.scp.css
+ª   ª           ª   ª       
+ª   ª           ª   +---bundle
+ª   ª           ª   ª       TradingAppProject.styles.css
+ª   ª           ª   ª       
+ª   ª           ª   +---Component
+ª   ª           ª   ª   +---Layout
+ª   ª           ª   ª   ª       MainLayout.razor.rz.scp.css
+ª   ª           ª   ª   ª       NavMenu.razor.rz.scp.css
+ª   ª           ª   ª   ª       PageSubNav.razor.rz.scp.css
+ª   ª           ª   ª   ª       SubNav_00_Overview.razor.rz.scp.css
+ª   ª           ª   ª   ª       SubNav_00_Overview_Analytics.razor.rz.scp.css
+ª   ª           ª   ª   ª       SubNav_00_Overview_Reports.razor.rz.scp.css
+ª   ª           ª   ª   ª       SubNav_01_Oanda.razor.rz.scp.css
+ª   ª           ª   ª   ª       SubNav_01_Oanda_Analytics.razor.rz.scp.css
+ª   ª           ª   ª   ª       SubNav_01_Oanda_Reports.razor.rz.scp.css
+ª   ª           ª   ª   ª       SubNav_02_Sierra_PST.razor.rz.scp.css
+ª   ª           ª   ª   ª       SubNav_02_Sierra_PST_Analytics.razor.rz.scp.css
+ª   ª           ª   ª   ª       SubNav_02_Sierra_PST_Reports.razor.rz.scp.css
+ª   ª           ª   ª   ª       SubNav_03_Sierra_AMP.razor.rz.scp.css
+ª   ª           ª   ª   ª       SubNav_03_Sierra_AMP_Analytics.razor.rz.scp.css
+ª   ª           ª   ª   ª       SubNav_03_Sierra_AMP_Reports.razor.rz.scp.css
+ª   ª           ª   ª   ª       SubNav_04_Ninja_Tradeify.razor.rz.scp.css
+ª   ª           ª   ª   ª       SubNav_04_Ninja_Tradeify_Analytics.razor.rz.scp.css
+ª   ª           ª   ª   ª       SubNav_04_Ninja_Tradeify_Reports.razor.rz.scp.css
+ª   ª           ª   ª   ª       SubNav_05_Alpaca.razor.rz.scp.css
+ª   ª           ª   ª   ª       SubNav_05_Alpaca_Analytics.razor.rz.scp.css
+ª   ª           ª   ª   ª       SubNav_05_Alpaca_Reports.razor.rz.scp.css
+ª   ª           ª   ª   ª       
+ª   ª           ª   ª   +---Page
+ª   ª           ª   ª       +---00_Overview
+ª   ª           ª   ª       ª   ª   01_Overview_Trade01.razor.rz.scp.css
+ª   ª           ª   ª       ª   ª   02_Overview_Trade02.razor.rz.scp.css
+ª   ª           ª   ª       ª   ª   03_Overview_Trade03.razor.rz.scp.css
+ª   ª           ª   ª       ª   ª   
+ª   ª           ª   ª       ª   +---04_Overview_Analytics
+ª   ª           ª   ª       ª   ª       01_Overview_Analytics.razor.rz.scp.css
+ª   ª           ª   ª       ª   ª       02_Overview_Analytics.razor.rz.scp.css
+ª   ª           ª   ª       ª   ª       03_Overview_Analytics.razor.rz.scp.css
+ª   ª           ª   ª       ª   ª       04_Overview_Analytics.razor.rz.scp.css
+ª   ª           ª   ª       ª   ª       05_Overview_Analytics.razor.rz.scp.css
+ª   ª           ª   ª       ª   ª       
+ª   ª           ª   ª       ª   +---05_Overview_Reports
+ª   ª           ª   ª       ª           01_Overview_Reports.razor.rz.scp.css
+ª   ª           ª   ª       ª           02_Overview_Reports.razor.rz.scp.css
+ª   ª           ª   ª       ª           03_Overview_Reports.razor.rz.scp.css
+ª   ª           ª   ª       ª           04_Overview_Reports.razor.rz.scp.css
+ª   ª           ª   ª       ª           05_Overview_Reports.razor.rz.scp.css
+ª   ª           ª   ª       ª           
+ª   ª           ª   ª       +---01_Oanda
+ª   ª           ª   ª       ª   ª   01_Oanda_RT.razor.rz.scp.css
+ª   ª           ª   ª       ª   ª   02_Oanda_RM.razor.rz.scp.css
+ª   ª           ª   ª       ª   ª   03_Oanda_C.razor.rz.scp.css
+ª   ª           ª   ª       ª   ª   
+ª   ª           ª   ª       ª   +---04_Oanda_Analytics
+ª   ª           ª   ª       ª   ª       01_Oanda_Analytics.razor.rz.scp.css
+ª   ª           ª   ª       ª   ª       02_Oanda_Analytics.razor.rz.scp.css
+ª   ª           ª   ª       ª   ª       03_Oanda_Analytics.razor.rz.scp.css
+ª   ª           ª   ª       ª   ª       04_Oanda_Analytics.razor.rz.scp.css
+ª   ª           ª   ª       ª   ª       05_Oanda_Analytics.razor.rz.scp.css
+ª   ª           ª   ª       ª   ª       
+ª   ª           ª   ª       ª   +---05_Oanda_Reports
+ª   ª           ª   ª       ª           01_Oanda_Reports.razor.rz.scp.css
+ª   ª           ª   ª       ª           02_Oanda_Reports.razor.rz.scp.css
+ª   ª           ª   ª       ª           03_Oanda_Reports.razor.rz.scp.css
+ª   ª           ª   ª       ª           04_Oanda_Reports.razor.rz.scp.css
+ª   ª           ª   ª       ª           05_Oanda_Reports.razor.rz.scp.css
+ª   ª           ª   ª       ª           
+ª   ª           ª   ª       +---02_Sierra_PST
+ª   ª           ª   ª       ª   ª   01_Sierra_PST_RT.razor.rz.scp.css
+ª   ª           ª   ª       ª   ª   02_Sierra_PST_RM.razor.rz.scp.css
+ª   ª           ª   ª       ª   ª   03_Sierra_PST_C.razor.rz.scp.css
+ª   ª           ª   ª       ª   ª   04_Sierra_PST_H.razor.rz.scp.css
+ª   ª           ª   ª       ª   ª   
+ª   ª           ª   ª       ª   +---05_Sierra_PST_Analytics
+ª   ª           ª   ª       ª   ª       01_Sierra_PST_Analytics.razor.rz.scp.css
+ª   ª           ª   ª       ª   ª       02_Sierra_PST_Analytics.razor.rz.scp.css
+ª   ª           ª   ª       ª   ª       03_Sierra_PST_Analytics.razor.rz.scp.css
+ª   ª           ª   ª       ª   ª       04_Sierra_PST_Analytics.razor.rz.scp.css
+ª   ª           ª   ª       ª   ª       05_Sierra_PST_Analytics.razor.rz.scp.css
+ª   ª           ª   ª       ª   ª       
+ª   ª           ª   ª       ª   +---06_Sierra_PST_Reports
+ª   ª           ª   ª       ª           01_Sierra_PST_Reports.razor.rz.scp.css
+ª   ª           ª   ª       ª           02_Sierra_PST_Reports.razor.rz.scp.css
+ª   ª           ª   ª       ª           03_Sierra_PST_Reports.razor.rz.scp.css
+ª   ª           ª   ª       ª           04_Sierra_PST_Reports.razor.rz.scp.css
+ª   ª           ª   ª       ª           05_Sierra_PST_Reports.razor.rz.scp.css
+ª   ª           ª   ª       ª           
+ª   ª           ª   ª       +---03_Sierra_AMP
+ª   ª           ª   ª       ª   ª   01_Sierra_AMP_RT.razor.rz.scp.css
+ª   ª           ª   ª       ª   ª   02_Sierra_AMP_RM.razor.rz.scp.css
+ª   ª           ª   ª       ª   ª   03_Sierra_AMP_C.razor.rz.scp.css
+ª   ª           ª   ª       ª   ª   04_Sierra_AMP_H.razor.rz.scp.css
+ª   ª           ª   ª       ª   ª   
+ª   ª           ª   ª       ª   +---05_Sierra_AMP_Analytics
+ª   ª           ª   ª       ª   ª       01_Sierra_AMP_Analytics.razor.rz.scp.css
+ª   ª           ª   ª       ª   ª       02_Sierra_AMP_Analytics.razor.rz.scp.css
+ª   ª           ª   ª       ª   ª       03_Sierra_AMP_Analytics.razor.rz.scp.css
+ª   ª           ª   ª       ª   ª       04_Sierra_AMP_Analytics.razor.rz.scp.css
+ª   ª           ª   ª       ª   ª       05_Sierra_AMP_Analytics.razor.rz.scp.css
+ª   ª           ª   ª       ª   ª       
+ª   ª           ª   ª       ª   +---06_Sierra_AMP_Reports
+ª   ª           ª   ª       ª           01_Sierra_AMP_Reports.razor.rz.scp.css
+ª   ª           ª   ª       ª           02_Sierra_AMP_Reports.razor.rz.scp.css
+ª   ª           ª   ª       ª           03_Sierra_AMP_Reports.razor.rz.scp.css
+ª   ª           ª   ª       ª           04_Sierra_AMP_Reports.razor.rz.scp.css
+ª   ª           ª   ª       ª           05_Sierra_AMP_Reports.razor.rz.scp.css
+ª   ª           ª   ª       ª           
+ª   ª           ª   ª       +---04_Ninja_Tradeify
+ª   ª           ª   ª       ª   ª   01_Ninja_Tradeify_RT.razor.rz.scp.css
+ª   ª           ª   ª       ª   ª   02_Ninja_Tradeify_RM.razor.rz.scp.css
+ª   ª           ª   ª       ª   ª   03_Ninja_Tradeify_C.razor.rz.scp.css
+ª   ª           ª   ª       ª   ª   04_Ninja_Tradeify_H.razor.rz.scp.css
+ª   ª           ª   ª       ª   ª   
+ª   ª           ª   ª       ª   +---05_Ninja_Tradeify_Analytics
+ª   ª           ª   ª       ª   ª       01_Ninja_Tradeify_Analytics.razor.rz.scp.css
+ª   ª           ª   ª       ª   ª       02_Ninja_Tradeify_Analytics.razor.rz.scp.css
+ª   ª           ª   ª       ª   ª       03_Ninja_Tradeify_Analytics.razor.rz.scp.css
+ª   ª           ª   ª       ª   ª       04_Ninja_Tradeify_Analytics.razor.rz.scp.css
+ª   ª           ª   ª       ª   ª       05_Ninja_Tradeify_Analytics.razor.rz.scp.css
+ª   ª           ª   ª       ª   ª       
+ª   ª           ª   ª       ª   +---06_Ninja_Tradeify_Reports
+ª   ª           ª   ª       ª           01_Ninja_Tradeify_Reports.razor.rz.scp.css
+ª   ª           ª   ª       ª           02_Ninja_Tradeify_Reports.razor.rz.scp.css
+ª   ª           ª   ª       ª           03_Ninja_Tradeify_Reports.razor.rz.scp.css
+ª   ª           ª   ª       ª           04_Ninja_Tradeify_Reports.razor.rz.scp.css
+ª   ª           ª   ª       ª           05_Ninja_Tradeify_Reports.razor.rz.scp.css
+ª   ª           ª   ª       ª           
+ª   ª           ª   ª       +---05_Alpaca
+ª   ª           ª   ª       ª   ª   01_Alpaca_RT.razor.rz.scp.css
+ª   ª           ª   ª       ª   ª   02_Alpaca_RM.razor.rz.scp.css
+ª   ª           ª   ª       ª   ª   03_Alpaca_C.razor.rz.scp.css
+ª   ª           ª   ª       ª   ª   04_Alpaca_H.razor.rz.scp.css
+ª   ª           ª   ª       ª   ª   
+ª   ª           ª   ª       ª   +---05_Alpaca_Analytics
+ª   ª           ª   ª       ª   ª       01_Alpaca_Analytics.razor.rz.scp.css
+ª   ª           ª   ª       ª   ª       02_Alpaca_Analytics.razor.rz.scp.css
+ª   ª           ª   ª       ª   ª       03_Alpaca_Analytics.razor.rz.scp.css
+ª   ª           ª   ª       ª   ª       04_Alpaca_Analytics.razor.rz.scp.css
+ª   ª           ª   ª       ª   ª       05_Alpaca_Analytics.razor.rz.scp.css
+ª   ª           ª   ª       ª   ª       
+ª   ª           ª   ª       ª   +---06_Alpaca_Reports
+ª   ª           ª   ª       ª           01_Alpaca_Reports.razor.rz.scp.css
+ª   ª           ª   ª       ª           02_Alpaca_Reports.razor.rz.scp.css
+ª   ª           ª   ª       ª           03_Alpaca_Reports.razor.rz.scp.css
+ª   ª           ª   ª       ª           04_Alpaca_Reports.razor.rz.scp.css
+ª   ª           ª   ª       ª           05_Alpaca_Reports.razor.rz.scp.css
+ª   ª           ª   ª       ª           
+ª   ª           ª   ª       +---Extra
+ª   ª           ª   ª       ª       Daily_PnL_Report.razor.rz.scp.css
+ª   ª           ª   ª       ª       Realtime_Account_Stats.razor.rz.scp.css
+ª   ª           ª   ª       ª       Realtime_Stats_Overview.razor.rz.scp.css
+ª   ª           ª   ª       ª       Realtime_Symbol_Stats.razor.rz.scp.css
+ª   ª           ª   ª       ª       Session_Review_Report.razor.rz.scp.css
+ª   ª           ª   ª       ª       System_Performance_Report.razor.rz.scp.css
+ª   ª           ª   ª       ª       Weekly_PnL_Report.razor.rz.scp.css
+ª   ª           ª   ª       ª       
+ª   ª           ª   ª       +---Page_Component
+ª   ª           ª   ª       ª       Page_Component_Grid_9Col.razor.rz.scp.css
+ª   ª           ª   ª       ª       Page_Component_Grid_C.razor.rz.scp.css
+ª   ª           ª   ª       ª       Page_Component_Grid_H.razor.rz.scp.css
+ª   ª           ª   ª       ª       Page_Component_Grid_RM.razor.rz.scp.css
+ª   ª           ª   ª       ª       Page_Component_Grid_RT.razor.rz.scp.css
+ª   ª           ª   ª       ª       Page_Component_Overview_H.razor.rz.scp.css
+ª   ª           ª   ª       ª       Page_Component_Overview_R.razor.rz.scp.css
+ª   ª           ª   ª       ª       Page_Component_SystemMessage - Copy.razor.rz.scp.css
+ª   ª           ª   ª       ª       Page_Component_SystemMessage.razor.rz.scp.css
+ª   ª           ª   ª       ª       Page_Component_SystemMessage_Content.razor.rz.scp.css
+ª   ª           ª   ª       ª       Page_Component_System_Message.razor.rz.scp.css
+ª   ª           ª   ª       ª       Page_Component_TickMonitor.razor.rz.scp.css
+ª   ª           ª   ª       ª       Page_Component_TickRecorder.razor.rz.scp.css
+ª   ª           ª   ª       ª       
+ª   ª           ª   ª       +---Script
+ª   ª           ª   ª               Scripts_Home.razor.rz.scp.css
+ª   ª           ª   ª               Script_Backtest_Results.razor.rz.scp.css
+ª   ª           ª   ª               Script_Editor.razor.rz.scp.css
+ª   ª           ª   ª               Script_Library.razor.rz.scp.css
+ª   ª           ª   ª               
+ª   ª           ª   +---projectbundle
+ª   ª           ª           TradingAppProject.bundle.scp.css
+ª   ª           ª           
+ª   ª           +---staticwebassets
+ª   +---Properties
+ª   ª       launchSettings.json
+ª   ª       
+ª   +---Sample_Data
+ª   ª       C_Field_Forex.cs
+ª   ª       C_Field_Future.cs
+ª   ª       C_Field_Stock.cs
+ª   ª       
+ª   +---Service
+ª   ª   +---All
+ª   ª   ª       Message_Service.cs
+ª   ª   ª       Sync_Service.cs
+ª   ª   ª       
+ª   ª   +---Broker
+ª   ª   ª       Broker_Alpaca_Service.cs
+ª   ª   ª       Broker_Ninja_Tradeify_Service.cs
+ª   ª   ª       Broker_Oanda_Service.cs
+ª   ª   ª       Broker_Sierra_AMP_Service.cs
+ª   ª   ª       Broker_Sierra_PST_Service.cs
+ª   ª   ª       IBrokerConnection_Service.cs
+ª   ª   ª       
+ª   ª   +---Grid
+ª   ª   ª       Grid_All_Service.cs
+ª   ª   ª       Grid_C_Service.cs
+ª   ª   ª       Grid_H_Service.cs
+ª   ª   ª       Grid_RT_RM_Service.cs
+ª   ª   ª       
+ª   ª   +---MarketData
+ª   ª   ª       ITickSource_Service.cs
+ª   ª   ª       TickSource_Manager_Service.cs
+ª   ª   ª       TickSource_Oanda_Service.cs
+ª   ª   ª       TickSource_Recorder_Service.cs
+ª   ª   ª       TickSource_Sierra_Rithmic_Service.cs
+ª   ª   ª       TickSource_Test_Service.cs
+ª   ª   ª       
+ª   ª   +---Overview
+ª   ª           Overview_C_Service.cs
+ª   ª           Overview_H_Service.cs
+ª   ª           Overview_R_Service.cs
+ª   ª           
+ª   +---wwwroot
+ª       ª   favicon.png
 ª       ª   
-ª       +---00_Overview
-ª       ª   ª   01_Overview_Trade01.razor
-ª       ª   ª   01_Overview_Trade01.razor.css
-ª       ª   ª   02_Overview_Trade02.razor
-ª       ª   ª   02_Overview_Trade02.razor.css
-ª       ª   ª   03_Overview_Trade03.razor
-ª       ª   ª   03_Overview_Trade03.razor.css
-ª       ª   ª   
-ª       ª   +---04_Overview_Analytics
-ª       ª   ª       01_Overview_Analytics.razor
-ª       ª   ª       01_Overview_Analytics.razor.css
-ª       ª   ª       02_Overview_Analytics.razor
-ª       ª   ª       02_Overview_Analytics.razor.css
-ª       ª   ª       03_Overview_Analytics.razor
-ª       ª   ª       03_Overview_Analytics.razor.css
-ª       ª   ª       04_Overview_Analytics.razor
-ª       ª   ª       04_Overview_Analytics.razor.css
-ª       ª   ª       05_Overview_Analytics.razor
-ª       ª   ª       05_Overview_Analytics.razor.css
-ª       ª   ª       
-ª       ª   +---05_Overview_Reports
-ª       ª           01_Overview_Reports.razor
-ª       ª           01_Overview_Reports.razor.css
-ª       ª           02_Overview_Reports.razor
-ª       ª           02_Overview_Reports.razor.css
-ª       ª           03_Overview_Reports.razor
-ª       ª           03_Overview_Reports.razor.css
-ª       ª           04_Overview_Reports.razor
-ª       ª           04_Overview_Reports.razor.css
-ª       ª           05_Overview_Reports.razor
-ª       ª           05_Overview_Reports.razor.css
-ª       ª           
-ª       +---01_Oanda
-ª       ª   ª   01_Oanda_RT.razor
-ª       ª   ª   01_Oanda_RT.razor.css
-ª       ª   ª   02_Oanda_RM.razor
-ª       ª   ª   02_Oanda_RM.razor.css
-ª       ª   ª   03_Oanda_C.razor
-ª       ª   ª   03_Oanda_C.razor.css
-ª       ª   ª   
-ª       ª   +---04_Oanda_Analytics
-ª       ª   ª       01_Oanda_Analytics.razor
-ª       ª   ª       01_Oanda_Analytics.razor.css
-ª       ª   ª       02_Oanda_Analytics.razor
-ª       ª   ª       02_Oanda_Analytics.razor.css
-ª       ª   ª       03_Oanda_Analytics.razor
-ª       ª   ª       03_Oanda_Analytics.razor.css
-ª       ª   ª       04_Oanda_Analytics.razor
-ª       ª   ª       04_Oanda_Analytics.razor.css
-ª       ª   ª       05_Oanda_Analytics.razor
-ª       ª   ª       05_Oanda_Analytics.razor.css
-ª       ª   ª       
-ª       ª   +---05_Oanda_Reports
-ª       ª           01_Oanda_Reports.razor
-ª       ª           01_Oanda_Reports.razor.css
-ª       ª           02_Oanda_Reports.razor
-ª       ª           02_Oanda_Reports.razor.css
-ª       ª           03_Oanda_Reports.razor
-ª       ª           03_Oanda_Reports.razor.css
-ª       ª           04_Oanda_Reports.razor
-ª       ª           04_Oanda_Reports.razor.css
-ª       ª           05_Oanda_Reports.razor
-ª       ª           05_Oanda_Reports.razor.css
-ª       ª           
-ª       +---02_Sierra_PST
-ª       ª   ª   01_Sierra_PST_RT.razor
-ª       ª   ª   01_Sierra_PST_RT.razor.css
-ª       ª   ª   02_Sierra_PST_RM.razor
-ª       ª   ª   02_Sierra_PST_RM.razor.css
-ª       ª   ª   03_Sierra_PST_C.razor
-ª       ª   ª   03_Sierra_PST_C.razor.css
-ª       ª   ª   04_Sierra_PST_H.razor
-ª       ª   ª   04_Sierra_PST_H.razor.css
-ª       ª   ª   
-ª       ª   +---05_Sierra_PST_Analytics
-ª       ª   ª       01_Sierra_PST_Analytics.razor
-ª       ª   ª       01_Sierra_PST_Analytics.razor.css
-ª       ª   ª       02_Sierra_PST_Analytics.razor
-ª       ª   ª       02_Sierra_PST_Analytics.razor.css
-ª       ª   ª       03_Sierra_PST_Analytics.razor
-ª       ª   ª       03_Sierra_PST_Analytics.razor.css
-ª       ª   ª       04_Sierra_PST_Analytics.razor
-ª       ª   ª       04_Sierra_PST_Analytics.razor.css
-ª       ª   ª       05_Sierra_PST_Analytics.razor
-ª       ª   ª       05_Sierra_PST_Analytics.razor.css
-ª       ª   ª       
-ª       ª   +---06_Sierra_PST_Reports
-ª       ª           01_Sierra_PST_Reports.razor
-ª       ª           01_Sierra_PST_Reports.razor.css
-ª       ª           02_Sierra_PST_Reports.razor
-ª       ª           02_Sierra_PST_Reports.razor.css
-ª       ª           03_Sierra_PST_Reports.razor
-ª       ª           03_Sierra_PST_Reports.razor.css
-ª       ª           04_Sierra_PST_Reports.razor
-ª       ª           04_Sierra_PST_Reports.razor.css
-ª       ª           05_Sierra_PST_Reports.razor
-ª       ª           05_Sierra_PST_Reports.razor.css
-ª       ª           
-ª       +---03_Sierra_AMP
-ª       ª   ª   01_Sierra_AMP_RT.razor
-ª       ª   ª   01_Sierra_AMP_RT.razor.css
-ª       ª   ª   02_Sierra_AMP_RM.razor
-ª       ª   ª   02_Sierra_AMP_RM.razor.css
-ª       ª   ª   03_Sierra_AMP_C.razor
-ª       ª   ª   03_Sierra_AMP_C.razor.css
-ª       ª   ª   04_Sierra_AMP_H.razor
-ª       ª   ª   04_Sierra_AMP_H.razor.css
-ª       ª   ª   
-ª       ª   +---05_Sierra_AMP_Analytics
-ª       ª   ª       01_Sierra_AMP_Analytics.razor
-ª       ª   ª       01_Sierra_AMP_Analytics.razor.css
-ª       ª   ª       02_Sierra_AMP_Analytics.razor
-ª       ª   ª       02_Sierra_AMP_Analytics.razor.css
-ª       ª   ª       03_Sierra_AMP_Analytics.razor
-ª       ª   ª       03_Sierra_AMP_Analytics.razor.css
-ª       ª   ª       04_Sierra_AMP_Analytics.razor
-ª       ª   ª       04_Sierra_AMP_Analytics.razor.css
-ª       ª   ª       05_Sierra_AMP_Analytics.razor
-ª       ª   ª       05_Sierra_AMP_Analytics.razor.css
-ª       ª   ª       
-ª       ª   +---06_Sierra_AMP_Reports
-ª       ª           01_Sierra_AMP_Reports.razor
-ª       ª           01_Sierra_AMP_Reports.razor.css
-ª       ª           02_Sierra_AMP_Reports.razor
-ª       ª           02_Sierra_AMP_Reports.razor.css
-ª       ª           03_Sierra_AMP_Reports.razor
-ª       ª           03_Sierra_AMP_Reports.razor.css
-ª       ª           04_Sierra_AMP_Reports.razor
-ª       ª           04_Sierra_AMP_Reports.razor.css
-ª       ª           05_Sierra_AMP_Reports.razor
-ª       ª           05_Sierra_AMP_Reports.razor.css
-ª       ª           
-ª       +---04_Ninja_Tradeify
-ª       ª   ª   01_Ninja_Tradeify_RT.razor
-ª       ª   ª   01_Ninja_Tradeify_RT.razor.css
-ª       ª   ª   02_Ninja_Tradeify_RM.razor
-ª       ª   ª   02_Ninja_Tradeify_RM.razor.css
-ª       ª   ª   03_Ninja_Tradeify_C.razor
-ª       ª   ª   03_Ninja_Tradeify_C.razor.css
-ª       ª   ª   04_Ninja_Tradeify_H.razor
-ª       ª   ª   04_Ninja_Tradeify_H.razor.css
-ª       ª   ª   
-ª       ª   +---05_Ninja_Tradeify_Analytics
-ª       ª   ª       01_Ninja_Tradeify_Analytics.razor
-ª       ª   ª       01_Ninja_Tradeify_Analytics.razor.css
-ª       ª   ª       02_Ninja_Tradeify_Analytics.razor
-ª       ª   ª       02_Ninja_Tradeify_Analytics.razor.css
-ª       ª   ª       03_Ninja_Tradeify_Analytics.razor
-ª       ª   ª       03_Ninja_Tradeify_Analytics.razor.css
-ª       ª   ª       04_Ninja_Tradeify_Analytics.razor
-ª       ª   ª       04_Ninja_Tradeify_Analytics.razor.css
-ª       ª   ª       05_Ninja_Tradeify_Analytics.razor
-ª       ª   ª       05_Ninja_Tradeify_Analytics.razor.css
-ª       ª   ª       
-ª       ª   +---06_Ninja_Tradeify_Reports
-ª       ª           01_Ninja_Tradeify_Reports.razor
-ª       ª           01_Ninja_Tradeify_Reports.razor.css
-ª       ª           02_Ninja_Tradeify_Reports.razor
-ª       ª           02_Ninja_Tradeify_Reports.razor.css
-ª       ª           03_Ninja_Tradeify_Reports.razor
-ª       ª           03_Ninja_Tradeify_Reports.razor.css
-ª       ª           04_Ninja_Tradeify_Reports.razor
-ª       ª           04_Ninja_Tradeify_Reports.razor.css
-ª       ª           05_Ninja_Tradeify_Reports.razor
-ª       ª           05_Ninja_Tradeify_Reports.razor.css
-ª       ª           
-ª       +---05_Alpaca
-ª       ª   ª   01_Alpaca_RT.razor
-ª       ª   ª   01_Alpaca_RT.razor.css
-ª       ª   ª   02_Alpaca_RM.razor
-ª       ª   ª   02_Alpaca_RM.razor.css
-ª       ª   ª   03_Alpaca_C.razor
-ª       ª   ª   03_Alpaca_C.razor.css
-ª       ª   ª   04_Alpaca_H.razor
-ª       ª   ª   04_Alpaca_H.razor.css
-ª       ª   ª   
-ª       ª   +---05_Alpaca_Analytics
-ª       ª   ª       01_Alpaca_Analytics.razor
-ª       ª   ª       01_Alpaca_Analytics.razor.css
-ª       ª   ª       02_Alpaca_Analytics.razor
-ª       ª   ª       02_Alpaca_Analytics.razor.css
-ª       ª   ª       03_Alpaca_Analytics.razor
-ª       ª   ª       03_Alpaca_Analytics.razor.css
-ª       ª   ª       04_Alpaca_Analytics.razor
-ª       ª   ª       04_Alpaca_Analytics.razor.css
-ª       ª   ª       05_Alpaca_Analytics.razor
-ª       ª   ª       05_Alpaca_Analytics.razor.css
-ª       ª   ª       
-ª       ª   +---06_Alpaca_Reports
-ª       ª           01_Alpaca_Reports.razor
-ª       ª           01_Alpaca_Reports.razor.css
-ª       ª           02_Alpaca_Reports.razor
-ª       ª           02_Alpaca_Reports.razor.css
-ª       ª           03_Alpaca_Reports.razor
-ª       ª           03_Alpaca_Reports.razor.css
-ª       ª           04_Alpaca_Reports.razor
-ª       ª           04_Alpaca_Reports.razor.css
-ª       ª           05_Alpaca_Reports.razor
-ª       ª           05_Alpaca_Reports.razor.css
-ª       ª           
-ª       +---Extra
-ª       ª       Daily_PnL_Report.razor
-ª       ª       Daily_PnL_Report.razor.css
-ª       ª       Realtime_Account_Stats.razor
-ª       ª       Realtime_Account_Stats.razor.css
-ª       ª       Realtime_Stats_Overview.razor
-ª       ª       Realtime_Stats_Overview.razor.css
-ª       ª       Realtime_Symbol_Stats.razor
-ª       ª       Realtime_Symbol_Stats.razor.css
-ª       ª       Session_Review_Report.razor
-ª       ª       Session_Review_Report.razor.css
-ª       ª       System_Performance_Report.razor
-ª       ª       System_Performance_Report.razor.css
-ª       ª       Weekly_PnL_Report.razor
-ª       ª       Weekly_PnL_Report.razor.css
+ª       +---bootstrap
+ª       ª       bootstrap.min.css
+ª       ª       bootstrap.min.css.map
 ª       ª       
-ª       +---Page_Component
-ª       ª       Page_Component_Grid_9Col.razor
-ª       ª       Page_Component_Grid_9Col.razor.css
-ª       ª       Page_Component_Grid_C.razor
-ª       ª       Page_Component_Grid_C.razor.css
-ª       ª       Page_Component_Grid_H.razor
-ª       ª       Page_Component_Grid_H.razor.css
-ª       ª       Page_Component_Grid_RM.razor
-ª       ª       Page_Component_Grid_RM.razor.css
-ª       ª       Page_Component_Grid_RT.razor
-ª       ª       Page_Component_Grid_RT.razor.css
-ª       ª       Page_Component_Message_Log.razor
-ª       ª       Page_Component_Message_Log.razor.css
-ª       ª       Page_Component_Overview_H.razor
-ª       ª       Page_Component_Overview_H.razor.css
-ª       ª       Page_Component_Overview_R.razor
-ª       ª       Page_Component_Overview_R.razor.css
-ª       ª       Page_Component_TickMonitor.razor
-ª       ª       Page_Component_TickMonitor.razor.css
-ª       ª       Page_Component_TickRecorder.razor
-ª       ª       Page_Component_TickRecorder.razor.css
+ª       +---css
+ª       ª       app.css
+ª       ª       grid.css
+ª       ª       overview.css
 ª       ª       
-ª       +---Script
-ª               Scripts_Home.razor
-ª               Scripts_Home.razor.css
-ª               Script_Backtest_Results.razor
-ª               Script_Backtest_Results.razor.css
-ª               Script_Editor.razor
-ª               Script_Editor.razor.css
-ª               Script_Library.razor
-ª               Script_Library.razor.css
-ª               
-+---Model
-ª       C_Broker_Status.cs
-ª       C_Field.cs
-ª       C_Order_Request.cs
-ª       C_Position.cs
-ª       C_Report_Summary.cs
-ª       C_Trade_Record.cs
-ª       C_Trading_Script.cs
-ª       
-+---obj
-ª   ª   project.assets.json
-ª   ª   project.nuget.cache
-ª   ª   TradingAppProject.csproj.nuget.dgspec.json
-ª   ª   TradingAppProject.csproj.nuget.g.props
-ª   ª   TradingAppProject.csproj.nuget.g.targets
+ª       +---icons
+ª           +---bootstrap-icons
+ª               ª   bootstrap-icons.css
+ª               ª   
+ª               +---fonts
+ª                       bootstrap-icons.woff
+ª                       bootstrap-icons.woff2
+ª                       
++---TradingSierraProject
+ª   ª   dllmain.cpp
+ª   ª   framework.h
+ª   ª   pch.cpp
+ª   ª   pch.h
+ª   ª   TradingSierraProject.vcxproj
+ª   ª   TradingSierraProject.vcxproj.filters
+ª   ª   TradingSierraProject.vcxproj.user
 ª   ª   
-ª   +---Debug
-ª       +---net8.0
-ª           ª   .NETCoreApp,Version=v8.0.AssemblyAttributes.cs
-ª           ª   rpswa.dswa.cache.json
-ª           ª   staticwebassets.removed.txt
-ª           ª   TradingAppProject.AssemblyInfo.cs
-ª           ª   TradingAppProject.AssemblyInfoInputs.cache
-ª           ª   TradingAppProject.assets.cache
-ª           ª   TradingAppProject.GeneratedMSBuildEditorConfig.editorconfig
-ª           ª   TradingAppProject.GlobalUsings.g.cs
+ª   +---x64
+ª       +---Debug
+ª           ª   dllmain.obj
+ª           ª   pch.obj
+ª           ª   TradingSierraProject.Build.CppClean.log
+ª           ª   TradingSierraProject.dll.recipe
+ª           ª   TradingSierraProject.ilk
+ª           ª   TradingSierraProject.log
+ª           ª   TradingSierraProject.pch
+ª           ª   TradingSierraProject.vcxproj.FileListAbsolute.txt
+ª           ª   vc143.idb
+ª           ª   vc143.pdb
 ª           ª   
-ª           +---ref
-ª           +---refint
-ª           +---staticwebassets
-+---Properties
-ª       launchSettings.json
-ª       
-+---Sample_Data
-ª       C_Field_Forex.cs
-ª       C_Field_Future.cs
-ª       C_Field_Stock.cs
-ª       
-+---Service
-ª   +---All
-ª   ª       Message_Service.cs
-ª   ª       Sync_Service.cs
-ª   ª       
-ª   +---Broker
-ª   ª       Broker_Alpaca_Service.cs
-ª   ª       Broker_Ninja_Tradeify_Service.cs
-ª   ª       Broker_Oanda_Service.cs
-ª   ª       Broker_Sierra_AMP_Service.cs
-ª   ª       Broker_Sierra_PST_Service.cs
-ª   ª       IBrokerConnection_Service.cs
-ª   ª       
-ª   +---Grid
-ª   ª       Grid_All_Service.cs
-ª   ª       Grid_C_Service.cs
-ª   ª       Grid_H_Service.cs
-ª   ª       Grid_RT_RM_Service.cs
-ª   ª       
-ª   +---MarketData
-ª   ª       ITickSource_Service.cs
-ª   ª       TickSource_Manager_Service.cs
-ª   ª       TickSource_Oanda_Service.cs
-ª   ª       TickSource_Recorder_Service.cs
-ª   ª       TickSource_Sierra_Rithmic_Service.cs
-ª   ª       TickSource_Test_Service.cs
-ª   ª       
-ª   +---Overview
-ª           Overview_C_Service.cs
-ª           Overview_H_Service.cs
-ª           Overview_R_Service.cs
-ª           
-+---wwwroot
-    ª   favicon.png
-    ª   
-    +---bootstrap
-    ª       bootstrap.min.css
-    ª       bootstrap.min.css.map
-    ª       
-    +---css
-    ª       app.css
-    ª       grid.css
-    ª       overview.css
-    ª       
-    +---icons
-        +---bootstrap-icons
-            ª   bootstrap-icons.css
-            ª   
-            +---fonts
-                    bootstrap-icons.woff
-                    bootstrap-icons.woff2
-                    
+ª           +---TradingS.569affef.tlog
+ª                   CL.command.1.tlog
+ª                   Cl.items.tlog
+ª                   CL.read.1.tlog
+ª                   CL.write.1.tlog
+ª                   link.command.1.tlog
+ª                   link.read.1.tlog
+ª                   link.secondary.1.tlog
+ª                   link.write.1.tlog
+ª                   TradingSierraProject.lastbuildstate
+ª                   
++---x64
+    +---Debug
+            TradingSierraProject.dll
+            TradingSierraProject.pdb
+            
