@@ -210,28 +210,128 @@ a.active
 
 .test-panel-grid
 {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 20px;
-    width: 100%;
     box-sizing: border-box;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 100%;
+    margin: 20px 0px 0px 0px; /* top right bottom left */
+    padding: 0px 0px 0px 0px; /* top right bottom left */
 }
 
 .test-panel-col
 {
     border: 1px solid #d0d0d0;
     box-sizing: border-box;
-    padding: 10px 10px 10px 10px; /* top right bottom left */
+    height: 100%;
     margin: 0px 0px 0px 0px; /* top right bottom left */
+    padding: 10px 10px 10px 10px; /* top right bottom left */
 }
 
-
-.tick-monitor
+.test-panel-header
 {
-    border: 0px solid var(--black-30);
+    border-bottom: 1px solid var(--black-10);
+    margin: 0px 0px 8px 0px; /* top right bottom left */
+    padding: 0px 0px 4px 0px; /* top right bottom left */
+}
+
+.test-panel-summary
+{
+    color: var(--black-60);
+    font-size: 12px;
+    margin: 0px 0px 8px 0px; /* top right bottom left */
+    padding: 0px 0px 0px 0px; /* top right bottom left */
+}
+
+.test-panel-empty
+{
+    color: var(--black-50);
+    font-size: 12px;
+    font-style: italic;
+    margin: 0px 0px 0px 0px; /* top right bottom left */
+    padding: 4px 0px 0px 0px; /* top right bottom left */
+}
+
+.test-panel-button
+{
+    background-color: #f0f0f0;
+    border: 1px solid #b0b0b0;
+    box-sizing: border-box;
+    cursor: pointer;
+    font-size: 12px;
+    margin: 0px 0px 8px 0px; /* top right bottom left */
+    padding: 4px 8px 4px 8px; /* top right bottom left */
+}
+
+.test-panel-message-log
+{
+    box-sizing: border-box;
+    font-family: Arial, Calibri, sans-serif;
+    font-size: 13px;
+    line-height: 1.4;
+    max-height: 100%;
+    overflow-y: auto;
+    margin: 0px 0px 0px 0px; /* top right bottom left */
+    padding: 0px 0px 0px 0px; /* top right bottom left */
+}
+
+.test-panel-message-log-row
+{
+    border-bottom: 1px solid var(--black-05);
+    margin: 0px 0px 0px 0px; /* top right bottom left */
+    padding: 2px 0px 2px 0px; /* top right bottom left */
+}
+
+    .test-panel-message-log-row:last-child
+    {
+        border-bottom: 0px solid transparent;
+    }
+
+.test-panel-tick-monitor
+{
+    border: 0px solid transparent;
+    box-sizing: border-box;
     margin: 0px 0px 0px 0px; /* top right bottom left */
     padding: 10px 10px 10px 10px; /* top right bottom left */
 }
+
+.test-panel-ticks
+{
+    box-sizing: border-box;
+    font-size: 12px;
+    margin: 0px 0px 0px 0px; /* top right bottom left */
+    padding: 0px 0px 0px 0px; /* top right bottom left */
+}
+
+.test-panel-tick-table
+{
+    border-collapse: collapse;
+    table-layout: fixed;
+    width: 100%;
+    margin: 0px 0px 0px 0px; /* top right bottom left */
+    padding: 0px 0px 0px 0px; /* top right bottom left */
+}
+
+    .test-panel-tick-table th,
+    .test-panel-tick-table td
+    {
+        border-bottom: 1px solid var(--black-05);
+        font-size: 12px;
+        text-align: left;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin: 0px 0px 0px 0px; /* top right bottom left */
+        padding: 2px 4px 2px 4px; /* top right bottom left */
+    }
+
+        .test-panel-tick-table th:last-child,
+        .test-panel-tick-table td:last-child
+        {
+            padding-right: 0px;
+        }
+
+
 
 
 
