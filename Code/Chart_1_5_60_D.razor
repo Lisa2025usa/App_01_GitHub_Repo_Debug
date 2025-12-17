@@ -1,0 +1,500 @@
+@* Chart_1_5_60_D.razor *@
+@* Updated: 2025-12-17 08:15 PST *@
+@rendermode @(new InteractiveServerRenderMode(prerender: false))
+
+@implements IAsyncDisposable
+
+@inject IJSRuntime Var_JS
+@inject Broker_Oanda_Service Var_Broker_Oanda
+@inject TickSource_Manager_Service Var_TickSource_Manager
+
+<div class="chart-grid-4up">
+    <div class="chart-panel">
+        <div class="chart-panel-header">@Var_Hdr_1m</div>
+        <div id="@Var_Id_1m" class="chart-canvas" style="height: 260px;"></div>
+    </div>
+
+    <div class="chart-panel">
+        <div class="chart-panel-header">@Var_Hdr_5m</div>
+        <div id="@Var_Id_5m" class="chart-canvas" style="height: 260px;"></div>
+    </div>
+
+    <div class="chart-panel">
+        <div class="chart-panel-header">@Var_Hdr_60m</div>
+        <div id="@Var_Id_60m" class="chart-canvas" style="height: 260px;"></div>
+    </div>
+
+    <div class="chart-panel">
+        <div class="chart-panel-header">@Var_Hdr_D</div>
+        <div id="@Var_Id_D" class="chart-canvas" style="height: 260px;"></div>
+    </div>
+</div>
+
+<div class="paneltick-empty">
+    Debug:
+    Created=@Var_IsCreated |
+    TicksSeen=@Var_TicksSeen |
+    LastTickUtc=@Var_LastTickUtc |
+    FlushRunning=@Var_FlushRunning |
+    FlushLoops=@Var_FlushLoops |
+    FlushTicks=@Var_FlushTicks |
+    GateBusySkips=@Var_GateBusySkips |
+    NoTickSkips=@Var_NoTickSkips |
+    LastFlushUtc=@Var_LastFlushUtc |
+    JS1mOk=@Var_JSOk_1m |
+    JS5mOk=@Var_JSOk_5m |
+    JS60mOk=@Var_JSOk_60m |
+    JSDOk=@Var_JSOk_D |
+    LastJsErr=@Var_LastJsError | PingOk=@Var_PingOk | PingUtc=@Var_PingUtc
+
+</div>
+
+@code
+{
+    // ===== Parameters =====
+
+    [Parameter] public string Par_Symbol { get; set; } = "EUR_USD";
+    [Parameter] public string Par_TitlePrefix { get; set; } = "OANDA";
+    [Parameter] public int Par_BarCount { get; set; } = 300;
+
+    // ===== Internal Ids =====
+
+    private readonly string Var_Id_1m = $"chart_1m_{Guid.NewGuid():N}";
+    private readonly string Var_Id_5m = $"chart_5m_{Guid.NewGuid():N}";
+    private readonly string Var_Id_60m = $"chart_60m_{Guid.NewGuid():N}";
+    private readonly string Var_Id_D = $"chart_d_{Guid.NewGuid():N}";
+
+    // ===== Chart Keys (unique per component instance) =====
+
+    private readonly string Var_Key_1m = $"oanda_1m_{Guid.NewGuid():N}";
+    private readonly string Var_Key_5m = $"oanda_5m_{Guid.NewGuid():N}";
+    private readonly string Var_Key_60m = $"oanda_60m_{Guid.NewGuid():N}";
+    private readonly string Var_Key_D = $"oanda_d_{Guid.NewGuid():N}";
+
+    // ===== State =====
+
+    private bool Var_IsCreated = false;
+
+    private string Var_Hdr_1m = "";
+    private string Var_Hdr_5m = "";
+    private string Var_Hdr_60m = "";
+    private string Var_Hdr_D = "";
+
+    private List<C_Candle> Var_L_Candles_1m = [];
+    private List<C_Candle> Var_L_Candles_5m = [];
+    private List<C_Candle> Var_L_Candles_60m = [];
+    private List<C_Candle> Var_L_Candles_D = [];
+
+    private DateTime Var_LastHdrRefreshUtc = DateTime.MinValue;
+
+    private readonly object Var_Lock = new();
+
+    // Latest tick snapshot (event handler only stores; a single loop flushes to JS)
+    private MarketTick? Var_LastTick = null;
+
+    private long Var_TicksSeen = 0;
+    private string Var_LastTickUtc = "";
+
+    // Flush loop proof counters
+    private long Var_FlushLoops = 0;
+    private long Var_FlushTicks = 0;
+    private long Var_GateBusySkips = 0;
+    private long Var_NoTickSkips = 0;
+    private string Var_LastFlushUtc = "";
+
+    // JS return status (only 1m uses bool-return calls right now; others are void)
+    private bool Var_JSOk_1m = true;
+    private bool Var_JSOk_5m = true;
+    private bool Var_JSOk_60m = true;
+    private bool Var_JSOk_D = true;
+
+    private string Var_LastJsError = "";
+    private bool Var_PingOk = false;
+    private string Var_PingUtc = "";
+    // One serialized flush loop (prevents JS call pileups)
+    private bool Var_FlushRunning = false;
+    private PeriodicTimer? Var_Timer;
+    private readonly SemaphoreSlim Var_FlushGate = new(1, 1);
+
+    private int Var_FlushMs = 250;
+
+    // DTO used for JS interop: must be { time, open, high, low, close }
+    private sealed class BarDto
+    {
+        public long time { get; set; }
+        public decimal open { get; set; }
+        public decimal high { get; set; }
+        public decimal low { get; set; }
+        public decimal close { get; set; }
+    }
+
+    protected override void OnInitialized()
+    {
+        Var_TickSource_Manager.OnTickUpdated += HandleTick;
+
+        Var_FlushRunning = true;
+        Var_Timer = new PeriodicTimer(TimeSpan.FromMilliseconds(Var_FlushMs));
+        _ = FlushLoop();
+    }
+
+    protected override async Task OnAfterRenderAsync(bool Par_FirstRender)
+    {
+        if (!Par_FirstRender || Var_IsCreated)
+            return;
+
+        var Var_Style = C_Chart_Style_Registry.Default;
+
+        await Var_JS.InvokeVoidAsync("ChartInterop.createCandlesChart", Var_Key_1m, Var_Id_1m, Var_Style, 260, 120);
+        await Var_JS.InvokeVoidAsync("ChartInterop.createCandlesChart", Var_Key_5m, Var_Id_5m, Var_Style, 260, 120);
+        await Var_JS.InvokeVoidAsync("ChartInterop.createCandlesChart", Var_Key_60m, Var_Id_60m, Var_Style, 260, 120);
+        await Var_JS.InvokeVoidAsync("ChartInterop.createCandlesChart", Var_Key_D, Var_Id_D, Var_Style, 260, 120);
+
+        Var_PingOk = await Var_JS.InvokeAsync<bool>("ChartInterop.ping");
+        Var_PingUtc = DateTime.UtcNow.ToString("O");
+        await InvokeAsync(StateHasChanged);
+
+
+        var Var_Snap = await Var_Broker_Oanda.GetPriceSnapshotAsync(Par_Symbol, CancellationToken.None);
+
+        Var_L_Candles_1m = await Var_Broker_Oanda.GetCandlesAsync(Par_Symbol, "M1", Par_BarCount, CancellationToken.None);
+        Var_L_Candles_5m = await Var_Broker_Oanda.GetCandlesAsync(Par_Symbol, "M5", Par_BarCount, CancellationToken.None);
+        Var_L_Candles_60m = await Var_Broker_Oanda.GetCandlesAsync(Par_Symbol, "H1", Par_BarCount, CancellationToken.None);
+        Var_L_Candles_D = await Var_Broker_Oanda.GetCandlesAsync(Par_Symbol, "D", Par_BarCount, CancellationToken.None);
+
+        Var_JSOk_1m = await Var_JS.InvokeAsync<bool>("ChartInterop.setCandlesData", Var_Key_1m, Var_L_Candles_1m.Select(ToBarDto).ToList());
+        Var_JSOk_5m = await Var_JS.InvokeAsync<bool>("ChartInterop.setCandlesData", Var_Key_5m, Var_L_Candles_5m.Select(ToBarDto).ToList());
+        Var_JSOk_60m = await Var_JS.InvokeAsync<bool>("ChartInterop.setCandlesData", Var_Key_60m, Var_L_Candles_60m.Select(ToBarDto).ToList());
+        Var_JSOk_D = await Var_JS.InvokeAsync<bool>("ChartInterop.setCandlesData", Var_Key_D, Var_L_Candles_D.Select(ToBarDto).ToList());
+
+        if (!Var_JSOk_1m || !Var_JSOk_5m || !Var_JSOk_60m || !Var_JSOk_D)
+            Var_LastJsError = $"Initial setCandlesData returned FALSE (1m={Var_JSOk_1m},5m={Var_JSOk_5m},60m={Var_JSOk_60m},D={Var_JSOk_D})";
+
+        Var_Hdr_1m = BuildHeader("1m", Var_L_Candles_1m, Var_Snap);
+        Var_Hdr_5m = BuildHeader("5m", Var_L_Candles_5m, null);
+        Var_Hdr_60m = BuildHeader("60m", Var_L_Candles_60m, null);
+        Var_Hdr_D = BuildHeader("Daily", Var_L_Candles_D, null);
+
+        Var_IsCreated = true;
+
+        await InvokeAsync(StateHasChanged);
+    }
+
+    // Event handler does NOT call JS. It only stores the latest tick.
+    private void HandleTick(MarketTick Par_Tick)
+    {
+        if (!string.Equals(Par_Tick.Symbol, Par_Symbol, StringComparison.OrdinalIgnoreCase))
+            return;
+
+        lock (Var_Lock)
+        {
+            Var_LastTick = Par_Tick;
+            Var_TicksSeen++;
+            Var_LastTickUtc = Par_Tick.TimestampUtc.ToString("O");
+        }
+
+        _ = InvokeAsync(StateHasChanged);
+    }
+
+    private async Task FlushLoop()
+    {
+        if (Var_Timer is null)
+            return;
+
+        try
+        {
+            while (Var_FlushRunning && await Var_Timer.WaitForNextTickAsync())
+            {
+                Var_FlushLoops++;
+
+                if (!Var_IsCreated)
+                    continue;
+
+                MarketTick? Var_Tick;
+                lock (Var_Lock)
+                {
+                    Var_Tick = Var_LastTick;
+                }
+
+                if (Var_Tick is null)
+                {
+                    Var_NoTickSkips++;
+                    continue;
+                }
+
+                if (!await Var_FlushGate.WaitAsync(0))
+                {
+                    Var_GateBusySkips++;
+                    continue;
+                }
+
+                try
+                {
+                    Var_FlushTicks++;
+                    Var_LastFlushUtc = DateTime.UtcNow.ToString("O");
+
+                    await InvokeAsync(() => FlushOneTickToChartsAsync(Var_Tick));
+                }
+                catch (Exception ex)
+                {
+                    Var_LastJsError = ex.Message;
+                    await InvokeAsync(StateHasChanged);
+                }
+                finally
+                {
+                    Var_FlushGate.Release();
+                }
+            }
+        }
+        catch
+        {
+            // Ignore timer loop shutdown exceptions during navigation/dispose
+        }
+    }
+
+    private async Task FlushOneTickToChartsAsync(MarketTick Par_Tick)
+    {
+        if (!Var_IsCreated)
+            return;
+
+        DateTime Var_TickUtc = DateTime.SpecifyKind(Par_Tick.TimestampUtc, DateTimeKind.Utc);
+
+        decimal Var_Price_Mid = (Par_Tick.Bid + Par_Tick.Ask) / 2m;
+
+        BarDto? Var_Bar_1m;
+        BarDto? Var_Bar_5m;
+        BarDto? Var_Bar_60m;
+        BarDto? Var_Bar_D;
+
+        bool Var_Reset_1m;
+        bool Var_Reset_5m;
+        bool Var_Reset_60m;
+        bool Var_Reset_D;
+
+        List<BarDto>? Var_Full_1m;
+        List<BarDto>? Var_Full_5m;
+        List<BarDto>? Var_Full_60m;
+        List<BarDto>? Var_Full_D;
+
+        lock (Var_Lock)
+        {
+            (Var_Bar_1m, Var_Reset_1m, Var_Full_1m) = UpdateSeriesFromTick(Var_L_Candles_1m, Var_TickUtc, Var_Price_Mid, 60);
+            (Var_Bar_5m, Var_Reset_5m, Var_Full_5m) = UpdateSeriesFromTick(Var_L_Candles_5m, Var_TickUtc, Var_Price_Mid, 300);
+            (Var_Bar_60m, Var_Reset_60m, Var_Full_60m) = UpdateSeriesFromTick(Var_L_Candles_60m, Var_TickUtc, Var_Price_Mid, 3600);
+            (Var_Bar_D, Var_Reset_D, Var_Full_D) = UpdateDailyFromTick(Var_L_Candles_D, Var_TickUtc, Var_Price_Mid);
+        }
+
+        // 1m: bool-return calls so we can prove success/failure without relying on browser console
+        if (Var_Reset_1m && Var_Full_1m is not null)
+        {
+            Var_JSOk_1m = await Var_JS.InvokeAsync<bool>("ChartInterop.setCandlesData", Var_Key_1m, Var_Full_1m);
+            if (!Var_JSOk_1m) Var_LastJsError = "JS setCandlesData(1m) returned FALSE";
+        }
+        else if (Var_Bar_1m is not null)
+        {
+            Var_JSOk_1m = await Var_JS.InvokeAsync<bool>("ChartInterop.updateCandle", Var_Key_1m, Var_Bar_1m);
+            if (!Var_JSOk_1m) Var_LastJsError = "JS updateCandle(1m) returned FALSE";
+        }
+
+        // Others: keep them simple; we already have 1m as the “truth probe”
+        if (Var_Reset_5m && Var_Full_5m is not null) await Var_JS.InvokeVoidAsync("ChartInterop.setCandlesData", Var_Key_5m, Var_Full_5m);
+        else if (Var_Bar_5m is not null) await Var_JS.InvokeVoidAsync("ChartInterop.updateCandle", Var_Key_5m, Var_Bar_5m);
+
+        if (Var_Reset_60m && Var_Full_60m is not null) await Var_JS.InvokeVoidAsync("ChartInterop.setCandlesData", Var_Key_60m, Var_Full_60m);
+        else if (Var_Bar_60m is not null) await Var_JS.InvokeVoidAsync("ChartInterop.updateCandle", Var_Key_60m, Var_Bar_60m);
+
+        if (Var_Reset_D && Var_Full_D is not null) await Var_JS.InvokeVoidAsync("ChartInterop.setCandlesData", Var_Key_D, Var_Full_D);
+        else if (Var_Bar_D is not null) await Var_JS.InvokeVoidAsync("ChartInterop.updateCandle", Var_Key_D, Var_Bar_D);
+
+        // Header refresh (1/sec)
+        if ((DateTime.UtcNow - Var_LastHdrRefreshUtc).TotalSeconds >= 1)
+        {
+            Var_LastHdrRefreshUtc = DateTime.UtcNow;
+
+            var Var_Last1m = Var_L_Candles_1m.LastOrDefault();
+            if (Var_Last1m is null)
+            {
+                Var_Hdr_1m = $"{Par_TitlePrefix} 1m  {Par_Symbol}";
+            }
+            else
+            {
+                Var_Hdr_1m =
+                    $"{Par_TitlePrefix} 1m  {Par_Symbol}  " +
+                    $"O:{Var_Last1m.Open:F5} H:{Var_Last1m.High:F5} L:{Var_Last1m.Low:F5} C:{Var_Last1m.Close:F5} | " +
+                    $"M:{Var_Price_Mid:F5} B:{Par_Tick.Bid:F5} A:{Par_Tick.Ask:F5}";
+            }
+
+            Var_Hdr_5m = BuildHeader("5m", Var_L_Candles_5m, null);
+            Var_Hdr_60m = BuildHeader("60m", Var_L_Candles_60m, null);
+            Var_Hdr_D = BuildHeader("Daily", Var_L_Candles_D, null);
+
+            await InvokeAsync(StateHasChanged);
+        }
+    }
+
+    private (BarDto? Bar, bool DidFullReset, List<BarDto>? FullBars) UpdateSeriesFromTick(
+        List<C_Candle> Par_L_Candles,
+        DateTime Par_TickUtc,
+        decimal Par_Price,
+        int Par_BucketSeconds)
+    {
+        if (Par_L_Candles.Count == 0)
+            return (null, false, null);
+
+        long Var_BucketUnix = GetBucketUnix(Par_TickUtc, Par_BucketSeconds);
+
+        C_Candle Var_Last = Par_L_Candles[^1];
+
+        if (Var_BucketUnix == Var_Last.TimeUnix)
+        {
+            var Var_Repl = new C_Candle
+            {
+                TimeUnix = Var_Last.TimeUnix,
+                Open = Var_Last.Open,
+                High = (Par_Price > Var_Last.High) ? Par_Price : Var_Last.High,
+                Low = (Par_Price < Var_Last.Low) ? Par_Price : Var_Last.Low,
+                Close = Par_Price
+            };
+
+            Par_L_Candles[^1] = Var_Repl;
+            return (ToBarDto(Var_Repl), false, null);
+        }
+
+        if (Var_BucketUnix > Var_Last.TimeUnix)
+        {
+            var Var_New = new C_Candle
+            {
+                TimeUnix = Var_BucketUnix,
+                Open = Par_Price,
+                High = Par_Price,
+                Low = Par_Price,
+                Close = Par_Price
+            };
+
+            Par_L_Candles.Add(Var_New);
+
+            if (Par_L_Candles.Count > (Par_BarCount + 5))
+            {
+                Par_L_Candles.RemoveRange(0, Par_L_Candles.Count - Par_BarCount);
+                return (null, true, Par_L_Candles.Select(ToBarDto).ToList());
+            }
+
+            return (ToBarDto(Var_New), false, null);
+        }
+
+        return (null, false, null);
+    }
+
+    private (BarDto? Bar, bool DidFullReset, List<BarDto>? FullBars) UpdateDailyFromTick(
+        List<C_Candle> Par_L_Candles,
+        DateTime Par_TickUtc,
+        decimal Par_Price)
+    {
+        if (Par_L_Candles.Count == 0)
+            return (null, false, null);
+
+        // Keep your “align daily to the existing series anchor” approach
+        long Var_TickUnix = new DateTimeOffset(Par_TickUtc).ToUnixTimeSeconds();
+        long Var_SeriesAnchor = Par_L_Candles[^1].TimeUnix;
+
+        if (Var_TickUnix < Var_SeriesAnchor)
+            return (null, false, null);
+
+        long Var_DaysSinceAnchor = (Var_TickUnix - Var_SeriesAnchor) / 86400;
+        long Var_BucketUnix = Var_SeriesAnchor + (Var_DaysSinceAnchor * 86400);
+
+        C_Candle Var_Last = Par_L_Candles[^1];
+
+        if (Var_BucketUnix == Var_Last.TimeUnix)
+        {
+            var Var_Repl = new C_Candle
+            {
+                TimeUnix = Var_Last.TimeUnix,
+                Open = Var_Last.Open,
+                High = (Par_Price > Var_Last.High) ? Par_Price : Var_Last.High,
+                Low = (Par_Price < Var_Last.Low) ? Par_Price : Var_Last.Low,
+                Close = Par_Price
+            };
+
+            Par_L_Candles[^1] = Var_Repl;
+            return (ToBarDto(Var_Repl), false, null);
+        }
+
+        if (Var_BucketUnix > Var_Last.TimeUnix)
+        {
+            var Var_New = new C_Candle
+            {
+                TimeUnix = Var_BucketUnix,
+                Open = Par_Price,
+                High = Par_Price,
+                Low = Par_Price,
+                Close = Par_Price
+            };
+
+            Par_L_Candles.Add(Var_New);
+
+            if (Par_L_Candles.Count > (Par_BarCount + 2))
+            {
+                Par_L_Candles.RemoveRange(0, Par_L_Candles.Count - Par_BarCount);
+                return (null, true, Par_L_Candles.Select(ToBarDto).ToList());
+            }
+
+            return (ToBarDto(Var_New), false, null);
+        }
+
+        return (null, false, null);
+    }
+
+    private static long GetBucketUnix(DateTime Par_TickUtc, int Par_BucketSeconds)
+    {
+        long Var_Unix = new DateTimeOffset(Par_TickUtc).ToUnixTimeSeconds();
+        return (Var_Unix / Par_BucketSeconds) * Par_BucketSeconds;
+    }
+
+    private static BarDto ToBarDto(C_Candle Par_C) =>
+        new()
+        {
+            time = Par_C.TimeUnix,
+            open = Par_C.Open,
+            high = Par_C.High,
+            low = Par_C.Low,
+            close = Par_C.Close
+        };
+
+    private string BuildHeader(string Par_TFLabel, IReadOnlyList<C_Candle> Par_Candles, (decimal Bid, decimal Ask, DateTime TimeUtc)? Par_Snap)
+    {
+        var Var_Symbol = Par_Symbol;
+
+        if (Par_Candles is null || Par_Candles.Count == 0)
+            return $"{Par_TitlePrefix} {Par_TFLabel}  {Var_Symbol}";
+
+        var Var_Last = Par_Candles[^1];
+
+        if (Par_Snap is null)
+            return $"{Par_TitlePrefix} {Par_TFLabel}  {Var_Symbol}  O:{Var_Last.Open:F5} H:{Var_Last.High:F5} L:{Var_Last.Low:F5} C:{Var_Last.Close:F5}";
+
+        return $"{Par_TitlePrefix} {Par_TFLabel}  {Var_Symbol}  O:{Var_Last.Open:F5} H:{Var_Last.High:F5} L:{Var_Last.Low:F5} C:{Var_Last.Close:F5} | B:{Par_Snap.Value.Bid:F5} A:{Par_Snap.Value.Ask:F5}";
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        Var_FlushRunning = false;
+
+        try { Var_Timer?.Dispose(); } catch { }
+
+        Var_TickSource_Manager.OnTickUpdated -= HandleTick;
+
+        try
+        {
+            await Var_JS.InvokeVoidAsync("ChartInterop.removeChart", Var_Key_1m);
+            await Var_JS.InvokeVoidAsync("ChartInterop.removeChart", Var_Key_5m);
+            await Var_JS.InvokeVoidAsync("ChartInterop.removeChart", Var_Key_60m);
+            await Var_JS.InvokeVoidAsync("ChartInterop.removeChart", Var_Key_D);
+        }
+        catch
+        {
+            // Ignore dispose errors during shutdown/navigation
+        }
+
+        try { Var_FlushGate.Dispose(); } catch { }
+    }
+}
