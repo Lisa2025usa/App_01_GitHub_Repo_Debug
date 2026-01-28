@@ -1,0 +1,134 @@
+@*
+    FileBrowserExample.razor
+    
+    Example usage of the FolderTreeView component.
+    This demonstrates how to use the TOC component in your Blazor application.
+    
+    Usage: Add this to a Blazor page or include it in a layout.
+*@
+
+@page "/file-browser-example"
+
+<div class="file-browser-container">
+    <div class="file-browser-header">
+        <h3>File Browser Example</h3>
+        <p>Click folders to expand/collapse them. Click files to select them.</p>
+    </div>
+
+    <div class="file-browser-sidebar">
+        <FolderTreeView Item="@RootFolder" OnItemClick="HandleFileClick" />
+    </div>
+
+    @if (SelectedFile != null)
+    {
+        <div class="file-browser-details">
+            <h4>Selected File</h4>
+            <p><strong>Name:</strong> @SelectedFile.Name</p>
+            <p><strong>Path:</strong> @(SelectedFile.Path ?? "N/A")</p>
+            <p><strong>Type:</strong> @(SelectedFile.IsFolder ? "Folder" : "File")</p>
+        </div>
+    }
+</div>
+
+@code {
+    private FileSystemItem RootFolder { get; set; } = new();
+    private FileSystemItem? SelectedFile { get; set; }
+
+    protected override void OnInitialized()
+    {
+        // Create a sample folder structure
+        RootFolder = new FileSystemItem
+        {
+            Name = "My Project",
+            IsFolder = true,
+            IsExpanded = true, // Start with root expanded
+            Path = "/",
+            Children = new List<FileSystemItem>
+            {
+                new FileSystemItem
+                {
+                    Name = "src",
+                    IsFolder = true,
+                    IsExpanded = false,
+                    Path = "/src",
+                    Children = new List<FileSystemItem>
+                    {
+                        new FileSystemItem
+                        {
+                            Name = "Components",
+                            IsFolder = true,
+                            IsExpanded = false,
+                            Path = "/src/Components",
+                            Children = new List<FileSystemItem>
+                            {
+                                new FileSystemItem { Name = "App.razor", IsFolder = false, Path = "/src/Components/App.razor" },
+                                new FileSystemItem { Name = "MainLayout.razor", IsFolder = false, Path = "/src/Components/MainLayout.razor" },
+                                new FileSystemItem { Name = "NavMenu.razor", IsFolder = false, Path = "/src/Components/NavMenu.razor" }
+                            }
+                        },
+                        new FileSystemItem
+                        {
+                            Name = "Pages",
+                            IsFolder = true,
+                            IsExpanded = false,
+                            Path = "/src/Pages",
+                            Children = new List<FileSystemItem>
+                            {
+                                new FileSystemItem { Name = "Index.razor", IsFolder = false, Path = "/src/Pages/Index.razor" },
+                                new FileSystemItem { Name = "Counter.razor", IsFolder = false, Path = "/src/Pages/Counter.razor" },
+                                new FileSystemItem { Name = "Weather.razor", IsFolder = false, Path = "/src/Pages/Weather.razor" }
+                            }
+                        },
+                        new FileSystemItem { Name = "Program.cs", IsFolder = false, Icon = "⚙️", Path = "/src/Program.cs" }
+                    }
+                },
+                new FileSystemItem
+                {
+                    Name = "wwwroot",
+                    IsFolder = true,
+                    IsExpanded = false,
+                    Path = "/wwwroot",
+                    Children = new List<FileSystemItem>
+                    {
+                        new FileSystemItem
+                        {
+                            Name = "css",
+                            IsFolder = true,
+                            IsExpanded = false,
+                            Path = "/wwwroot/css",
+                            Children = new List<FileSystemItem>
+                            {
+                                new FileSystemItem { Name = "app.css", IsFolder = false, Icon = "🎨", Path = "/wwwroot/css/app.css" },
+                                new FileSystemItem { Name = "bootstrap.min.css", IsFolder = false, Icon = "🎨", Path = "/wwwroot/css/bootstrap.min.css" }
+                            }
+                        },
+                        new FileSystemItem
+                        {
+                            Name = "js",
+                            IsFolder = true,
+                            IsExpanded = false,
+                            Path = "/wwwroot/js",
+                            Children = new List<FileSystemItem>
+                            {
+                                new FileSystemItem { Name = "site.js", IsFolder = false, Icon = "📜", Path = "/wwwroot/js/site.js" }
+                            }
+                        },
+                        new FileSystemItem { Name = "favicon.ico", IsFolder = false, Icon = "🖼️", Path = "/wwwroot/favicon.ico" }
+                    }
+                },
+                new FileSystemItem { Name = "README.md", IsFolder = false, Icon = "📖", Path = "/README.md" },
+                new FileSystemItem { Name = "appsettings.json", IsFolder = false, Icon = "⚙️", Path = "/appsettings.json" },
+                new FileSystemItem { Name = ".gitignore", IsFolder = false, Icon = "🚫", Path = "/.gitignore" }
+            }
+        };
+    }
+
+    private void HandleFileClick(FileSystemItem item)
+    {
+        if (!item.IsFolder)
+        {
+            SelectedFile = item;
+            StateHasChanged();
+        }
+    }
+}
