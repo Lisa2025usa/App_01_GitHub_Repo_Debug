@@ -27,9 +27,11 @@ They typically miss one or more of these critical requirements:
 
 ### 📚 Documentation
 
-- **[QUICK_START.md](QUICK_START.md)** - Get a working TOC in 25 minutes
+- **[QUICK_START.md](QUICK_START.md)** - Get a working TOC in 25 minutes (⭐ Start here!)
 - **[BLAZOR_TOC_SOLUTION.md](BLAZOR_TOC_SOLUTION.md)** - Comprehensive explanation of the problem and solution
 - **[BROKEN_VS_WORKING.md](BROKEN_VS_WORKING.md)** - Side-by-side comparison of broken vs working code
+- **[DEBUGGING_CHECKLIST.md](DEBUGGING_CHECKLIST.md)** - Step-by-step guide to diagnose issues
+- **[VISUAL_GUIDE.md](VISUAL_GUIDE.md)** - Visual diagrams explaining how it works
 
 ### 💾 Working Code Examples
 
