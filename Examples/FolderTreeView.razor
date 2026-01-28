@@ -1,0 +1,111 @@
+@*
+    FolderTreeView.razor
+    
+    A working example of a collapsible folder/file tree in Blazor.
+    This addresses all the common issues that ChatGPT and Copilot miss.
+    
+    Key features:
+    1. Proper state management with IsExpanded
+    2. Conditional rendering with @if
+    3. Event propagation control with @onclick:stopPropagation
+    4. Recursive component design for nested folders
+    5. Explicit StateHasChanged() calls
+*@
+
+<div class="tree-item">
+    @if (Item.IsFolder)
+    {
+        @* FOLDER: Clickable header that toggles expansion *@
+        <div class="folder-header" 
+             @onclick="ToggleFolder" 
+             @onclick:stopPropagation="true">
+            <span class="folder-icon">
+                @if (Item.IsExpanded)
+                {
+                    <text>📂</text> @* Open folder icon *@
+                }
+                else
+                {
+                    <text>📁</text> @* Closed folder icon *@
+                }
+            </span>
+            <span class="item-name">@Item.Name</span>
+            @if (Item.Children.Any())
+            {
+                <span class="item-count">(@Item.Children.Count)</span>
+            }
+        </div>
+
+        @* CRITICAL: Conditional rendering of children based on IsExpanded state *@
+        @* This is what ChatGPT/Copilot often get wrong - they use CSS instead *@
+        @if (Item.IsExpanded && Item.Children.Any())
+        {
+            <div class="folder-content">
+                @foreach (var child in Item.Children)
+                {
+                    @* Recursive: Render child items using the same component *@
+                    <FolderTreeView Item="child" OnItemClick="HandleChildClick" />
+                }
+            </div>
+        }
+    }
+    else
+    {
+        @* FILE: Simple display, optionally clickable *@
+        <div class="file-item" 
+             @onclick="() => OnItemClick?.Invoke(Item)" 
+             @onclick:stopPropagation="true">
+            <span class="file-icon">
+                @if (!string.IsNullOrEmpty(Item.Icon))
+                {
+                    @Item.Icon
+                }
+                else
+                {
+                    <text>📄</text>
+                }
+            </span>
+            <span class="item-name">@Item.Name</span>
+        </div>
+    }
+</div>
+
+@code {
+    /// <summary>
+    /// The file system item to render (folder or file)
+    /// </summary>
+    [Parameter]
+    public FileSystemItem Item { get; set; } = new();
+
+    /// <summary>
+    /// Optional callback when a file is clicked
+    /// </summary>
+    [Parameter]
+    public Action<FileSystemItem>? OnItemClick { get; set; }
+
+    /// <summary>
+    /// CRITICAL: This method toggles the folder's expanded state.
+    /// Without proper state management here, nothing will happen when clicked.
+    /// </summary>
+    private void ToggleFolder()
+    {
+        if (Item.IsFolder)
+        {
+            // Toggle the expansion state
+            Item.IsExpanded = !Item.IsExpanded;
+            
+            // Force a re-render of this component
+            // This is usually automatic in Blazor, but being explicit
+            // helps prevent issues in complex scenarios or async contexts
+            StateHasChanged();
+        }
+    }
+
+    /// <summary>
+    /// Handles clicks on child items and propagates the event upward
+    /// </summary>
+    private void HandleChildClick(FileSystemItem item)
+    {
+        OnItemClick?.Invoke(item);
+    }
+}
